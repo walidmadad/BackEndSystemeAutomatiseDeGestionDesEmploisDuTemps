@@ -14,6 +14,4 @@ public class Salle {
     private long id;
     private long capacite;
     private enum type_salle {Amphi, TD, TP};
-
-
 }
