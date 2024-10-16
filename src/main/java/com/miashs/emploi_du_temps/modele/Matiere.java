@@ -1,9 +1,6 @@
 package com.miashs.emploi_du_temps.modele;
 
-import jakarta.persistence.Entity;
-import jakarta.persistence.GeneratedValue;
-import jakarta.persistence.GenerationType;
-import jakarta.persistence.Id;
+import jakarta.persistence.*;
 import lombok.Data;
 
 @Entity
@@ -15,4 +12,7 @@ public class Matiere {
     private String nom;
     private String code;
 
+    @ManyToOne(cascade = CascadeType.ALL)
+    @JoinColumn(name = "departement_id")
+    private Departement departement;
 }

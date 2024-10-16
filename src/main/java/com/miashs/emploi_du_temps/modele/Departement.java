@@ -1,5 +1,6 @@
 package com.miashs.emploi_du_temps.modele;
 
+import com.fasterxml.jackson.annotation.JsonIgnore;
 import jakarta.persistence.*;
 import lombok.AllArgsConstructor;
 import lombok.Getter;
@@ -19,10 +20,12 @@ public class Departement {
     private long id;
     private String nom;
 
-    @OneToMany(mappedBy = "Formation")
+    @JsonIgnore
+    @OneToMany(mappedBy = "departement")
     List<Matiere> matieres;
 
-    @OneToMany(mappedBy = "Salle")
+    @JsonIgnore
+    @OneToMany(mappedBy = "departement")
     List<Salle> salles;
 
 }
