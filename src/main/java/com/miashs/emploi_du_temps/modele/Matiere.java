@@ -1,7 +1,10 @@
 package com.miashs.emploi_du_temps.modele;
 
+import com.fasterxml.jackson.annotation.JsonIgnore;
 import jakarta.persistence.*;
 import lombok.Data;
+
+import java.util.List;
 
 @Entity
 @Data
@@ -16,9 +19,10 @@ public class Matiere {
     @JoinColumn(name = "formation_id")
     private Formation formation;
 
-    @ManyToOne(cascade = CascadeType.ALL)
-    @JoinColumn(name = "enseignant_id")
-    private Enseignant enseignant;
+
+    @JsonIgnore
+    @OneToMany(mappedBy = "matiere")
+    private List<Enseignant_matiere> enseignants;
 
 
 }

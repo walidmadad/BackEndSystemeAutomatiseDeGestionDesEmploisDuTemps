@@ -21,7 +21,7 @@ public class Enseignant {
 
     @JsonIgnore
     @OneToMany(mappedBy = "enseignant")
-    private List<Matiere> matieres;
+    private List<Enseignant_matiere> matieres;
 
     @JsonIgnore
     @OneToMany(mappedBy = "enseignant")
