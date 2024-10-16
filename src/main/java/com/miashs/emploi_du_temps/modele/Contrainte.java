@@ -1,10 +1,12 @@
 package com.miashs.emploi_du_temps.modele;
 
+import jakarta.persistence.Entity;
 import lombok.Data;
 
 import java.sql.Time;
 import java.util.Date;
 @Data
+@Entity
 public class Contrainte {
     private long id;
     private enum type_contraite {Personnel,Vacances, Autres};
