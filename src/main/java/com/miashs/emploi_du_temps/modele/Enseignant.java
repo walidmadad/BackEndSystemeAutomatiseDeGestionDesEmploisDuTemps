@@ -1,5 +1,6 @@
 package com.miashs.emploi_du_temps.modele;
 
+import com.fasterxml.jackson.annotation.JsonIgnore;
 import jakarta.persistence.*;
 import lombok.Data;
 
@@ -18,9 +19,16 @@ public class Enseignant {
     private String email;
     private String mdp;
 
+    @JsonIgnore
     @OneToMany(mappedBy = "enseignant")
     private List<Matiere> matieres;
+
+    @JsonIgnore
+    @OneToMany(mappedBy = "enseignant")
     private List<Notification> notifications;
+
+    @JsonIgnore
+    @OneToMany(mappedBy = "enseignant")
     private List<Contrainte> Contraintes;
 
 

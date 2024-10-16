@@ -22,7 +22,7 @@ public class Departement {
 
     @JsonIgnore
     @OneToMany(mappedBy = "departement")
-    List<Matiere> matieres;
+    List<Formation> formations;
 
     @JsonIgnore
     @OneToMany(mappedBy = "departement")

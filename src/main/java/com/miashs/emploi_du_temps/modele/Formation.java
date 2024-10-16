@@ -17,7 +17,7 @@ public class Formation {
     @JoinColumn(name = "departement_id")
     private Departement departement;
 
-    @ManyToMany(cascade = CascadeType.ALL)
+    @ManyToOne(cascade = CascadeType.ALL)
     @JoinColumn(name = "niveau_id")
     private Niveau niveau;
 
