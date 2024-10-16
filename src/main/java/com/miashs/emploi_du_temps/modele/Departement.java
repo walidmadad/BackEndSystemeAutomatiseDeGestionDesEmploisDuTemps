@@ -1,7 +1,6 @@
 package com.miashs.emploi_du_temps.modele;
 
-import jakarta.persistence.Entity;
-import jakarta.persistence.OneToMany;
+import jakarta.persistence.*;
 import lombok.AllArgsConstructor;
 import lombok.Getter;
 import lombok.NoArgsConstructor;
@@ -15,6 +14,8 @@ import java.util.List;
 @NoArgsConstructor
 @Entity
 public class Departement {
+    @Id
+    @GeneratedValue(strategy = GenerationType.IDENTITY)
     private long id;
     private String nom;
 
