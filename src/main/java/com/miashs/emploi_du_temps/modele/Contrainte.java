@@ -14,7 +14,7 @@ public class Contrainte {
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     private long id;
-    private enum type_contraite {Personnel,Vacances, Autres};
+    private Type_contraite type_contraite ;
     private String description;
     private Date date_begin;
     private Time time_degin;
