@@ -18,5 +18,10 @@ public class Enseignant {
     private String email;
     private String mdp;
 
+    @OneToMany(mappedBy = "enseignant")
+    private List<Matiere> matieres;
+    private List<Notification> notifications;
+    private List<Contrainte> Contraintes;
+
 
 }

@@ -1,9 +1,6 @@
 package com.miashs.emploi_du_temps.modele;
 
-import jakarta.persistence.Entity;
-import jakarta.persistence.GeneratedValue;
-import jakarta.persistence.GenerationType;
-import jakarta.persistence.Id;
+import jakarta.persistence.*;
 import lombok.Data;
 
 import java.sql.Time;
@@ -14,7 +11,7 @@ public class Contrainte {
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     private long id;
-    private Type_contraite type_contraite ;
+    private String type_contraite ;
     private String description;
     private Date date_begin;
     private Time time_degin;
@@ -22,4 +19,7 @@ public class Contrainte {
     private Time time_end;
     private boolean approved;
 
+    @ManyToOne(cascade = CascadeType.ALL)
+    @JoinColumn(name = "enseignant_id")
+    private Enseignant enseignant;
 }

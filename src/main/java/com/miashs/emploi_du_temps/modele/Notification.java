@@ -3,17 +3,20 @@ package com.miashs.emploi_du_temps.modele;
 import jakarta.persistence.*;
 import lombok.Data;
 
+import java.util.Date;
+
 @Data
 @Entity
-public class Salle {
+public class Notification {
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     private long id;
-    private long capacite;
-    private String typeSale;
+    private String message;
+    private Date dateEnvoie;
 
     @ManyToOne(cascade = CascadeType.ALL)
-    @JoinColumn(name = "departement_id")
-    private Departement departement;
+    @JoinColumn(name = "enseignant_id")
+    private Enseignant enseignant;
+
 
 }

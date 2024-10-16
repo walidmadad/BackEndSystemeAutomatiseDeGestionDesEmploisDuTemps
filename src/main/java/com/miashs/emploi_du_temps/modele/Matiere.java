@@ -13,6 +13,12 @@ public class Matiere {
     private String code;
 
     @ManyToOne(cascade = CascadeType.ALL)
-    @JoinColumn(name = "departement_id")
-    private Departement departement;
+    @JoinColumn(name = "formation_id")
+    private Formation formation;
+
+    @ManyToOne(cascade = CascadeType.ALL)
+    @JoinColumn(name = "enseignant_id")
+    private Enseignant enseignant;
+
+
 }

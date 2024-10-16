@@ -1,10 +1,9 @@
 package com.miashs.emploi_du_temps.modele;
 
-import jakarta.persistence.Entity;
-import jakarta.persistence.GeneratedValue;
-import jakarta.persistence.GenerationType;
-import jakarta.persistence.Id;
+import jakarta.persistence.*;
 import lombok.Data;
+
+import java.util.List;
 
 @Data
 @Entity
@@ -14,5 +13,14 @@ public class Formation {
     private int id;
     private String nom;
 
+    @ManyToOne(cascade = CascadeType.ALL)
+    @JoinColumn(name = "departement_id")
+    private Departement departement;
 
+    @ManyToMany(cascade = CascadeType.ALL)
+    @JoinColumn(name = "niveau_id")
+    private Niveau niveau;
+
+    @OneToMany(mappedBy = "formation")
+    private List<Matiere> matieres;
 }
