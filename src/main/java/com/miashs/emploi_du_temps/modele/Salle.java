@@ -12,8 +12,9 @@ public class Salle {
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     private long id;
+    private String nom;
     private long capacite;
-    private String typeSale;
+    private String typeSalle;
 
     @ManyToOne(cascade = CascadeType.ALL)
     @JoinColumn(name = "departement_id")
@@ -23,4 +24,10 @@ public class Salle {
     @OneToMany(mappedBy = "salle")
     private List<Cours> cours;
 
+    public Salle(String nom, long capacite, String typeSalle, Departement departement) {
+        this.nom = nom;
+        this.capacite = capacite;
+        this.typeSalle = typeSalle;
+        this.departement = departement;
+    }
 }
