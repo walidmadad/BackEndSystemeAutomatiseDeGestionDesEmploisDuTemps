@@ -28,4 +28,8 @@ public class Departement {
     @OneToMany(mappedBy = "departement")
     List<Salle> salles;
 
+    public Departement(String nom) {
+        this.nom = nom;
+    }
+
 }

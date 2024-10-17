@@ -19,10 +19,9 @@ public class Matiere {
     @JoinColumn(name = "formation_id")
     private Formation formation;
 
-
     @JsonIgnore
     @OneToMany(mappedBy = "matiere")
-    private List<Enseignant_matiere> enseignants;
+    private List<EnseignantMatiere> Enseignant_matiere;
 
 
 }
