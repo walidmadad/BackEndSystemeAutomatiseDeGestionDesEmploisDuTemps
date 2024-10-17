@@ -76,12 +76,12 @@ public class SalleService implements ISalleService{
         return salleRepository.findAll();
     }
     @Override
-    public List<Salle> getByDepartement(String nomDepartement) {
+    public List<Salle> getSalleByDepartement(String nomDepartement) {
         return salleRepository.findByDepartement(nomDepartement);
     }
 
     @Override
-    public List<Salle> getByName(String nom) {
+    public List<Salle> getSalleByName(String nom) {
         return salleRepository.findByName(nom);
     }
 

@@ -13,6 +13,6 @@ public interface ISalleService {
 
     Salle getSalleById(Long id);
     List<Salle> getAllSalle();
-    List<Salle> getByDepartement(String nomDepartement);
-    List<Salle> getByName(String nom);
+    List<Salle> getSalleByDepartement(String nomDepartement);
+    List<Salle> getSalleByName(String nom);
 }
