@@ -17,4 +17,8 @@ public class Niveau {
     @JsonIgnore
     @OneToMany(mappedBy = "niveau")
     private List<Formation> formations;
+
+    public Niveau(String nom) {
+        this.nom = nom;
+    }
 }
