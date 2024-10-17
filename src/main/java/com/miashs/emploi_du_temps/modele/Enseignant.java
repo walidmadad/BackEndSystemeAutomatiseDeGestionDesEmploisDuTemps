@@ -19,9 +19,6 @@ public class Enseignant {
     private String email;
     private String mdp;
 
-    @JsonIgnore
-    @OneToMany(mappedBy = "enseignant")
-    private List<Matiere> matieres;
 
     @JsonIgnore
     @OneToMany(mappedBy = "enseignant")
@@ -30,6 +27,10 @@ public class Enseignant {
     @JsonIgnore
     @OneToMany(mappedBy = "enseignant")
     private List<Contrainte> Contraintes;
+
+    @JsonIgnore
+    @OneToMany(mappedBy = "enseignant")
+    private List<EnseignantMatiere> Enseignant_matiere;
 
 
 }

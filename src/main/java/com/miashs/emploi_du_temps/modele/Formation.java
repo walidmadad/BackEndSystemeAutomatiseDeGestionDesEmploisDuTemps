@@ -1,5 +1,6 @@
 package com.miashs.emploi_du_temps.modele;
 
+import com.fasterxml.jackson.annotation.JsonIgnore;
 import jakarta.persistence.*;
 import lombok.Data;
 
@@ -21,6 +22,11 @@ public class Formation {
     @JoinColumn(name = "niveau_id")
     private Niveau niveau;
 
+    @JsonIgnore
     @OneToMany(mappedBy = "formation")
     private List<Matiere> matieres;
+
+    @JsonIgnore
+    @OneToMany(mappedBy = "formation")
+    private List<Cours> cours;
 }
