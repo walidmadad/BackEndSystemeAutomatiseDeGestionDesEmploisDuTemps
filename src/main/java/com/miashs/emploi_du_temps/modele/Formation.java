@@ -11,7 +11,7 @@ import java.util.List;
 public class Formation {
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
-    private int id;
+    private long id;
     private String nom;
 
     @ManyToOne(cascade = CascadeType.ALL)
@@ -29,4 +29,10 @@ public class Formation {
     @JsonIgnore
     @OneToMany(mappedBy = "formation")
     private List<Cours> cours;
+
+    public Formation(String nom, Departement departement, Niveau niveau) {
+        this.nom = nom;
+        this.departement = departement;
+        this.niveau = niveau;
+    }
 }
