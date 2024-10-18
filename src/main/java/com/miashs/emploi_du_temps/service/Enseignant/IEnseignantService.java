@@ -14,6 +14,7 @@ public interface IEnseignantService {
     List<Enseignant> getEnseignantByNom(String nom);
     List<Enseignant> getEnseignantByPrenom(String prenom);
     Enseignant getEnseignantByNomEtPrenom(String nom, String prenom);
+    List<Enseignant> getEnseignantsByMatiere(String matiere);
     List<Enseignant> getAllEnseignants();
 
 
