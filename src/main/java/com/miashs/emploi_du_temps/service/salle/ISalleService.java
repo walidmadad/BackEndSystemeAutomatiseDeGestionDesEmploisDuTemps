@@ -7,12 +7,13 @@ import java.util.List;
 
 public interface ISalleService {
 
-    Salle ajouterSalle(SalleRequest salleRequest);
-    Salle modifierSalle(SalleRequest salleRequest, Long id);
-    void SupprimerSalle(Long id);
+    Salle addSalle(SalleRequest salleRequest);
+    Salle updateSalle(SalleRequest salleRequest, Long id);
+    void deleteSalle(Long id);
 
     Salle getSalleById(Long id);
-    List<Salle> getAllSalle();
+    List<Salle> getAllSalles();
     List<Salle> getSalleByDepartement(String nomDepartement);
-    List<Salle> getSalleByName(String nom);
+    List<Salle> getSalleByType(String typeSalle);
+    List<Salle> getSalleByNom(String nom);
 }

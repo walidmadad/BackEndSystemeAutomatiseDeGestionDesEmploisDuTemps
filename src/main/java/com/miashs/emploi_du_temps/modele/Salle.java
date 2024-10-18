@@ -2,12 +2,16 @@ package com.miashs.emploi_du_temps.modele;
 
 import com.fasterxml.jackson.annotation.JsonIgnore;
 import jakarta.persistence.*;
+import lombok.AllArgsConstructor;
 import lombok.Data;
+import lombok.NoArgsConstructor;
 
 import java.util.List;
 
 @Data
 @Entity
+@NoArgsConstructor
+@AllArgsConstructor
 public class Salle {
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
@@ -24,10 +28,4 @@ public class Salle {
     @OneToMany(mappedBy = "salle")
     private List<Cours> cours;
 
-    public Salle(String nom, long capacite, String typeSalle, Departement departement) {
-        this.nom = nom;
-        this.capacite = capacite;
-        this.typeSalle = typeSalle;
-        this.departement = departement;
-    }
 }

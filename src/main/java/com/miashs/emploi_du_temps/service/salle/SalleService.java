@@ -1,9 +1,7 @@
 package com.miashs.emploi_du_temps.service.salle;
 
 import com.miashs.emploi_du_temps.Exception.ResourceNotFoundException;
-import com.miashs.emploi_du_temps.modele.Departement;
 import com.miashs.emploi_du_temps.modele.Salle;
-import com.miashs.emploi_du_temps.repository.DepartementRepository;
 import com.miashs.emploi_du_temps.repository.SalleRepository;
 import com.miashs.emploi_du_temps.request.SalleRequest;
 import lombok.RequiredArgsConstructor;
@@ -16,53 +14,41 @@ import java.util.Optional;
 @RequiredArgsConstructor
 public class SalleService implements ISalleService{
     private final SalleRepository salleRepository;
-    private final DepartementRepository departementRepository;
 
     @Override
-    public Salle ajouterSalle(SalleRequest request) {
-        Departement departement = Optional.ofNullable(departementRepository.findByName(request.getDepartement().getNom()))
-                .orElseGet(() -> {
-                    Departement newDepartement = new Departement(request.getDepartement().getNom());
-                    return departementRepository.save(newDepartement);
-                });
-        request.setDepartement(departement);
-        return salleRepository.save(createSalle(request, departement));
-    }
-
-    private Salle createSalle(SalleRequest request, Departement departement) {
-        return new Salle(
-                request.getNom(),
-                request.getCapacite(),
-                request.getTypeSalle(),
-                departement
-        );
-    }
-
-    @Override
-    public Salle modifierSalle(SalleRequest request, Long id) {
-        return salleRepository.findById(id)
-                .map(salleExistante -> modifierSalleExistante(salleExistante, request))
-                .map(salleRepository ::save)
-                .orElseThrow(() -> new ResourceNotFoundException("Salle non trouvée avec l'id : " + id));
-    }
-
-    private Salle modifierSalleExistante(Salle salle, SalleRequest request) {
+    public Salle addSalle(SalleRequest request) {
+        Salle salle = new Salle();
         salle.setNom(request.getNom());
         salle.setCapacite(request.getCapacite());
         salle.setTypeSalle(request.getTypeSalle());
         salle.setDepartement(request.getDepartement());
 
-        Departement departement = departementRepository.findByName(request.getDepartement().getNom());
-        salle.setDepartement(departement);
-        return salle;
+        return salleRepository.save(salle);
+
     }
 
     @Override
-    public void SupprimerSalle(Long id) {
-        salleRepository.findById(id)
-               .ifPresentOrElse(salleRepository :: delete, () -> {
-                   throw new ResourceNotFoundException("Salle non trouvée avec l'id : " + id);
-               });
+    public Salle updateSalle(SalleRequest request, Long id) {
+       Optional<Salle> salleExistant = salleRepository.findById(id);
+       if (salleExistant.isPresent()) {
+           Salle salle = salleExistant.get();
+           salle.setNom(request.getNom());
+           salle.setCapacite(request.getCapacite());
+           salle.setTypeSalle(request.getTypeSalle());
+           salle.setDepartement(request.getDepartement());
+
+           return salleRepository.save(salle);
+       }
+       else {
+           throw new ResourceNotFoundException("Salle non trouvée avec l'id : " + id);
+       }
+    }
+
+
+
+    @Override
+    public void deleteSalle(Long id) {
+        salleRepository.deleteById(id);
     }
 
     @Override
@@ -72,7 +58,7 @@ public class SalleService implements ISalleService{
     }
 
     @Override
-    public List<Salle> getAllSalle() {
+    public List<Salle> getAllSalles() {
         return salleRepository.findAll();
     }
     @Override
@@ -81,8 +67,12 @@ public class SalleService implements ISalleService{
     }
 
     @Override
-    public List<Salle> getSalleByName(String nom) {
-        return salleRepository.findByName(nom);
+    public List<Salle> getSalleByNom(String nom) {
+        return salleRepository.findByNom(nom);
     }
 
+    @Override
+    public List<Salle> getSalleByType(String type) {
+        return salleRepository.findByTypeSalle(type);
+    }
 }
