@@ -1,23 +1,27 @@
 package com.miashs.emploi_du_temps.modele;
 
 import jakarta.persistence.*;
+import lombok.AllArgsConstructor;
 import lombok.Data;
+import lombok.NoArgsConstructor;
 
-import java.sql.Time;
-import java.util.Date;
+
+import java.time.LocalDateTime;
+
+
 @Data
 @Entity
+@AllArgsConstructor
+@NoArgsConstructor
 public class Contrainte {
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     private long id;
-    private String type_contraite ;
+    private String titre;
+    private String typeContraite ;
     private String description;
-    private Date date_begin;
-    private Time time_degin;
-    private Date date_end;
-    private Time time_end;
-    private boolean approved;
+    private LocalDateTime dateDebut;
+    private LocalDateTime dateFin;
 
     @ManyToOne(cascade = CascadeType.ALL)
     @JoinColumn(name = "enseignant_id")
