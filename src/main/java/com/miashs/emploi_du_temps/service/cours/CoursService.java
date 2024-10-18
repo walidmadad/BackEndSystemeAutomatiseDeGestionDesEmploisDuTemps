@@ -1,5 +1,6 @@
 package com.miashs.emploi_du_temps.service.cours;
 
+import com.miashs.emploi_du_temps.Exception.ResourceNotFoundException;
 import com.miashs.emploi_du_temps.modele.Cours;
 import com.miashs.emploi_du_temps.repository.CoursRepository;
 import com.miashs.emploi_du_temps.request.CoursRequest;
@@ -18,7 +19,7 @@ public class CoursService implements ICoursService {
     private final CoursRepository coursRepository;
 
     @Override
-    public Cours ajouterCours(CoursRequest coursRequest) {
+    public Cours addCours(CoursRequest coursRequest) {
         Cours cours = new Cours();
         cours.setJour(coursRequest.getJour());
         cours.setHeure_debut(coursRequest.getHeureDebut());
@@ -35,7 +36,7 @@ public class CoursService implements ICoursService {
 
     // Modifier un cours
     @Override
-    public Cours modifierCours(CoursRequest coursRequest, Long id) {
+    public Cours updateCours(CoursRequest coursRequest, Long id) {
         Optional<Cours> coursExistant = coursRepository.findById(id);
         if (coursExistant.isPresent()) {
             Cours cours = coursExistant.get();
@@ -51,12 +52,12 @@ public class CoursService implements ICoursService {
 
             return coursRepository.save(cours);
         } else {
-            throw new RuntimeException("Cours avec l'ID " + id + " non trouvé");
+            throw new ResourceNotFoundException("Cours avec l'ID " + id + " non trouvé");
         }
     }
 
     @Override
-    public void supprimerCours(Long id) {
+    public void deleteCours(Long id) {
         coursRepository.deleteById(id);
     }
 
@@ -67,25 +68,22 @@ public class CoursService implements ICoursService {
     }
 
     @Override
-    public List<Cours> getCoursBymatiere(Long idMatiere) {
+    public List<Cours> getCoursByMatiere(Long idMatiere) {
         return coursRepository.findByMatiereId(idMatiere);
     }
 
-    // Obtenir les cours par formation
     @Override
     public List<Cours> getCoursByFormation(Long idFormation) {
         return coursRepository.findByFormationId(idFormation);
     }
 
-    // Obtenir tous les cours
     @Override
-    public List<Cours> getCoursAll() {
+    public List<Cours> getAllCours() {
         return coursRepository.findAll();
     }
 
-    // Obtenir un cours par jour et heure
     @Override
-    public Cours getByJourEtHeure(Date date, Time heureDebut, Time heureFin) {
+    public Cours getCoursByJourEtHeure(Date date, Time heureDebut, Time heureFin) {
         return coursRepository.findByJourAndHeureDebutAndHeureFin(date, heureDebut, heureFin);
     }
 }

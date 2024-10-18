@@ -8,13 +8,13 @@ import java.util.Date;
 import java.util.List;
 
 public interface ICoursService {
-    Cours ajouterCours(CoursRequest coursRequest);
-    Cours modifierCours(CoursRequest coursRequest, Long id);
-    void supprimerCours(Long id);
+    Cours addCours(CoursRequest coursRequest);
+    Cours updateCours(CoursRequest coursRequest, Long id);
+    void deleteCours(Long id);
 
     Cours getCoursById(Long id);
-    List<Cours> getCoursBymatiere(Long idMatiere);
+    List<Cours> getCoursByMatiere(Long idMatiere);
     List<Cours> getCoursByFormation(Long idFormation);
-    List<Cours> getCoursAll();
-    Cours getByJourEtHeure(Date date, Time heureDebut, Time heureFin);
+    List<Cours> getAllCours();
+    Cours getCoursByJourEtHeure(Date date, Time heureDebut, Time heureFin);
 }
