@@ -24,4 +24,10 @@ public class Matiere {
     private List<EnseignantMatiere> Enseignant_matiere;
 
 
+    public Matiere(String nom, String code, Formation formation) {
+        this.nom = nom;
+        this.code = code;
+        this.formation = formation;
+    }
+
 }
