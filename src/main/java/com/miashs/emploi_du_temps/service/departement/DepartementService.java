@@ -4,6 +4,7 @@ import com.miashs.emploi_du_temps.Exception.AlreadyExistsException;
 import com.miashs.emploi_du_temps.Exception.ResourceNotFoundException;
 import com.miashs.emploi_du_temps.modele.Departement;
 import com.miashs.emploi_du_temps.repository.DepartementRepository;
+import com.miashs.emploi_du_temps.request.DepartementRequest;
 import lombok.RequiredArgsConstructor;
 import org.springframework.stereotype.Service;
 
@@ -16,23 +17,27 @@ public class DepartementService implements IDepartementService {
     private final DepartementRepository departementRepository;
 
     @Override
-    public Departement ajouterDepartement(Departement departement) {
-        return Optional.of(departement)
-                .filter(d -> !departementRepository.existsByName(d.getNom()))
-                .map(departementRepository::save)
-                .orElseThrow(() -> new AlreadyExistsException("Département déjà existant : " + departement.getNom()));
+    public Departement addDepartement(DepartementRequest request) {
+        Departement departement = new Departement();
+        departement.setNom(request.getNom());
+        return departementRepository.save(departement);
     }
 
     @Override
-    public Departement modifierDepartement(Departement departement, Long id) {
-        return Optional.ofNullable(getDepartementById(id)).map(oldDepartement -> {
-            oldDepartement.setNom(departement.getNom());
-            return departementRepository.save(oldDepartement);
-        }).orElseThrow(() -> new RuntimeException("Departement Not Found"));
+    public Departement updateDepartement(DepartementRequest request, Long id) {
+        Optional<Departement> departementExistant = departementRepository.findById(id);
+
+        if (departementExistant.isPresent()) {
+            Departement departement = departementExistant.get();
+            departement.setNom(request.getNom());
+            return departementRepository.save(departement);
+        }else {
+            throw new ResourceNotFoundException("Departement Not Found");
+        }
     }
 
     @Override
-    public void supprimerDepartement(Long id) {
+    public void deleteDepartement(Long id) {
         departementRepository.findById(id).
                 ifPresentOrElse(departementRepository :: delete, () -> {
             throw new RuntimeException("Departement Not Found");
@@ -46,8 +51,8 @@ public class DepartementService implements IDepartementService {
     }
 
     @Override
-    public Departement getDepartementByName(String nom) {
-        return departementRepository.findByName(nom);
+    public Departement getDepartementByNome(String nom) {
+        return departementRepository.findByNom(nom);
     }
 
     @Override
