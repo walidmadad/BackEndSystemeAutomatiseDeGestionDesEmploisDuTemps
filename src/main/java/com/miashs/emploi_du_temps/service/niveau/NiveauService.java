@@ -25,7 +25,7 @@ public class NiveauService implements INiveauService{
     }
 
     @Override
-    public Niveau getNiveauByName(String nom) {
+    public Niveau getNiveauByNom(String nom) {
         return niveauRepository.findByNom(nom);
     }
 }

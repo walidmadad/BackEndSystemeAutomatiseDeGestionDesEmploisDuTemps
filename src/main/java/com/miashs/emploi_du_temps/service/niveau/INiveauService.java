@@ -8,6 +8,6 @@ import java.util.List;
 public interface INiveauService {
     Niveau getNiveauById(Long id);
     List<Niveau> getAllNiveaux();
-    Niveau getNiveauByName(String nom);
+    Niveau getNiveauByNom(String nom);
 
 }
