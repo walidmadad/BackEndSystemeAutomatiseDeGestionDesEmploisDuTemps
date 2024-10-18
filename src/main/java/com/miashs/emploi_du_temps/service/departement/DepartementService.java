@@ -4,7 +4,6 @@ import com.miashs.emploi_du_temps.Exception.AlreadyExistsException;
 import com.miashs.emploi_du_temps.Exception.ResourceNotFoundException;
 import com.miashs.emploi_du_temps.modele.Departement;
 import com.miashs.emploi_du_temps.repository.DepartementRepository;
-import com.miashs.emploi_du_temps.request.DepartementRequest;
 import lombok.RequiredArgsConstructor;
 import org.springframework.stereotype.Service;
 
@@ -17,20 +16,17 @@ public class DepartementService implements IDepartementService {
     private final DepartementRepository departementRepository;
 
     @Override
-    public Departement ajouterDepartement(DepartementRequest departementRequest) {
-        Departement departement = new Departement();
-        departement.setNom(departementRequest.getNom());
-
-        return Optional.ofNullable(departement)
+    public Departement ajouterDepartement(Departement departement) {
+        return Optional.of(departement)
                 .filter(d -> !departementRepository.existsByName(d.getNom()))
                 .map(departementRepository::save)
                 .orElseThrow(() -> new AlreadyExistsException("Département déjà existant : " + departement.getNom()));
     }
 
     @Override
-    public Departement modifierDepartement(DepartementRequest departementRequest, Long id) {
+    public Departement modifierDepartement(Departement departement, Long id) {
         return Optional.ofNullable(getDepartementById(id)).map(oldDepartement -> {
-            oldDepartement.setNom(departementRequest.getNom());
+            oldDepartement.setNom(departement.getNom());
             return departementRepository.save(oldDepartement);
         }).orElseThrow(() -> new RuntimeException("Departement Not Found"));
     }
