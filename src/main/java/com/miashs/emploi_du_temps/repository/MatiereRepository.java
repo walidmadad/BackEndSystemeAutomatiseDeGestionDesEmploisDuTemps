@@ -9,5 +9,6 @@ public interface MatiereRepository extends JpaRepository<Matiere, Long> {
 
     List<Matiere> findMatieresByFormation(String nomFormation);
     List<Matiere> findMatieresByEnseignant(String nomEnseignant);
+    Matiere findByNom(String nom);
 
 }

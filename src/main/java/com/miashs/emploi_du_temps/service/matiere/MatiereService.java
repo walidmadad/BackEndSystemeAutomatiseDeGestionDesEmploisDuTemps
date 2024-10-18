@@ -18,44 +18,35 @@ import java.util.Optional;
 @RequiredArgsConstructor
 public class MatiereService implements IMatiereService{
     private final MatiereRepository matiereRepository;
-    private final FormationRepository formationRepository;
+
 
     @Override
-    public Matiere ajouterMatiere(MatiereRequest request) {
-        Formation formation = Optional.ofNullable(formationRepository.findByName(request.getFormation().getNom()))
-                .orElseGet(() -> {
-                    Formation newFormation = new Formation(request.getFormation().getNom(), request.getFormation().getDepartement(), request.getFormation().getNiveau());
-                    return formationRepository.save(newFormation);
-                });
-        return matiereRepository.save(creerMatiere(request, formation));
-    }
-    public Matiere creerMatiere(MatiereRequest request, Formation formation) {
-        return new Matiere(
-                request.getNom(),
-                request.getCode(),
-                formation
-        );
+    public Matiere addMatiere(MatiereRequest request) {
+        Matiere matiere = new Matiere();
+        matiere.setNom(request.getNom());
+        matiere.setCode(request.getCode());
+        matiere.setFormation(request.getFormation());
+
+        return matiereRepository.save(matiere);
     }
 
     @Override
-    public Matiere modifierMatiere(MatiereRequest request, Long id) {
-        return matiereRepository.findById(id)
-                .map(matiereExistante -> modifierMatiereExitante(matiereExistante, request))
-                .map(matiereRepository :: save)
-                .orElseThrow(() -> new ResourceNotFoundException("Matière non trouvée avec l'id : " + id));
-    }
-    public Matiere modifierMatiereExitante(Matiere matiere, MatiereRequest matiereRequest) {
-        matiere.setNom(matiereRequest.getNom());
-        matiere.setCode(matiereRequest.getCode());
-        matiere.setFormation(matiereRequest.getFormation());
+    public Matiere updateMatiere(MatiereRequest request, Long id) {
+        Optional<Matiere> matiereExistant = matiereRepository.findById(id);
+        if (matiereExistant.isPresent()) {
+            Matiere matiere = matiereExistant.get();
+            matiere.setNom(request.getNom());
+            matiere.setCode(request.getCode());
+            matiere.setFormation(request.getFormation());
 
-        Formation formation = formationRepository.findByName(matiereRequest.getFormation().getNom());
-        matiere.setFormation(formation);
-        return matiere;
+            return matiereRepository.save(matiere);
+        }else {
+            throw new ResourceNotFoundException("Matière non trouvée avec l'id : " + id);
+        }
     }
 
     @Override
-    public void supprimerMatiere(Long id) {
+    public void deleteMatiere(Long id) {
         matiereRepository.findById(id).
                 ifPresentOrElse(matiereRepository :: delete, () -> {
             throw new RuntimeException("Matière Not Found");
@@ -82,5 +73,10 @@ public class MatiereService implements IMatiereService{
     @Override
     public List<Matiere> getMatieresByEnseignant(String nomEnseignant) {
         return matiereRepository.findMatieresByEnseignant(nomEnseignant);
+    }
+
+    @Override
+    public Matiere getMatieresByNom(String nomMatiere) {
+        return matiereRepository.findByNom(nomMatiere);
     }
 }

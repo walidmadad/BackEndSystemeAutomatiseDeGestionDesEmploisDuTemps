@@ -7,12 +7,13 @@ import java.util.List;
 
 public interface IMatiereService {
 
-    Matiere ajouterMatiere(MatiereRequest matiereRequest);
-    Matiere modifierMatiere(MatiereRequest matiereRequest, Long id);
-    void supprimerMatiere(Long id);
+    Matiere addMatiere(MatiereRequest matiereRequest);
+    Matiere updateMatiere(MatiereRequest matiereRequest, Long id);
+    void deleteMatiere(Long id);
 
     Matiere getMatiereById(Long id);
     List<Matiere> getAllMatieres();
+    Matiere getMatieresByNom(String nomMatiere);
     List<Matiere> getMatieresByFormation(String nomFormation);
     List<Matiere> getMatieresByEnseignant(String nomEnseignant);
 
