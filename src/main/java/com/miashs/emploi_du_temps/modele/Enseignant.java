@@ -2,13 +2,17 @@ package com.miashs.emploi_du_temps.modele;
 
 import com.fasterxml.jackson.annotation.JsonIgnore;
 import jakarta.persistence.*;
+import lombok.AllArgsConstructor;
 import lombok.Data;
+import lombok.NoArgsConstructor;
 
 import java.util.Date;
 import java.util.List;
 
 @Data
 @Entity
+@AllArgsConstructor
+@NoArgsConstructor
 public class Enseignant {
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
@@ -30,7 +34,7 @@ public class Enseignant {
 
     @JsonIgnore
     @OneToMany(mappedBy = "enseignant")
-    private List<EnseignantMatiere> Enseignant_matiere;
+    private List<Cours> cours;
 
 
 }

@@ -8,6 +8,6 @@ import java.util.List;
 public interface EnseignantRepository extends JpaRepository<Enseignant, Long> {
     List<Enseignant> findEnseignantByNom(String nom);
     List<Enseignant> findEnseignantByPrenom(String prenom);
-    Enseignant findEnseignantByNomEtPrenom(String nom, String prenom);
+    Enseignant findEnseignantByNomAndPrenom(String nom, String prenom);
     List<Enseignant> findEnseignantsByMatiere(String matiere);
 }

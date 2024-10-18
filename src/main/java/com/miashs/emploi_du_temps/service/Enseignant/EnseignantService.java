@@ -1,8 +1,9 @@
 package com.miashs.emploi_du_temps.service.Enseignant;
 
-import com.miashs.emploi_du_temps.Exception.AlreadyExistsException;
+import com.miashs.emploi_du_temps.Exception.ResourceNotFoundException;
 import com.miashs.emploi_du_temps.modele.Enseignant;
 import com.miashs.emploi_du_temps.repository.EnseignantRepository;
+import com.miashs.emploi_du_temps.request.EnseignantRequest;
 import lombok.RequiredArgsConstructor;
 import org.springframework.stereotype.Service;
 
@@ -15,23 +16,36 @@ public class EnseignantService implements IEnseignantService{
     private final EnseignantRepository enseignantRepository;
 
     @Override
-    public Enseignant ajouterEnseignant(Enseignant enseignant) {
-        return Optional.of(enseignant)
-                .filter(e -> enseignantRepository.existsById(e.getId()))
-                .map(enseignantRepository::save)
-                .orElseThrow(() -> new AlreadyExistsException("Enseignant déjà existant : " + enseignant.getId()));
+    public Enseignant addEnseignant(EnseignantRequest request) {
+        Enseignant enseignant = new Enseignant();
+        enseignant.setNom(request.getNom());
+        enseignant.setPrenom(request.getPrenom());
+        enseignant.setEmail(request.getEmail());
+        enseignant.setMdp(request.getMdp());
+        enseignant.setDate_joining(request.getDate_joining());
+
+        return enseignantRepository.save(enseignant);
     }
 
     @Override
-    public Enseignant modifierEnseignant(Enseignant enseignant, Long id) {
-        return Optional.ofNullable(getEnseignantById(id)).map(oldEnseignant -> {
-            oldEnseignant.setNom(enseignant.getNom());
-            return enseignantRepository.save(oldEnseignant);
-        }).orElseThrow(() -> new RuntimeException("Enseignant Not Found"));
+    public Enseignant updateEnseignant(EnseignantRequest enseignantRequest, Long id) {
+        Optional<Enseignant> enseignantExistant = enseignantRepository.findById(id);
+        if (enseignantExistant.isPresent()) {
+            Enseignant enseignant = enseignantExistant.get();
+            enseignant.setNom(enseignantRequest.getNom());
+            enseignant.setPrenom(enseignantRequest.getPrenom());
+            enseignant.setEmail(enseignantRequest.getEmail());
+            enseignant.setMdp(enseignantRequest.getMdp());
+            enseignant.setDate_joining(enseignantRequest.getDate_joining());
+
+            return enseignantRepository.save(enseignant);
+        }else {
+            throw new ResourceNotFoundException("Enseignant Not Found");
+        }
     }
 
     @Override
-    public void supprimerEnseignant(Long id) {
+    public void deleteEnseignant(Long id) {
         enseignantRepository.findById(id).
                 ifPresentOrElse(enseignantRepository::delete, () -> {
             throw new RuntimeException("Enseignant Not Found");
@@ -60,8 +74,8 @@ public class EnseignantService implements IEnseignantService{
     }
 
     @Override
-    public Enseignant getEnseignantByNomEtPrenom(String nom, String prenom) {
-        return enseignantRepository.findEnseignantByNomEtPrenom(nom, prenom);
+    public Enseignant getEnseignantByNomAndPrenom(String nom, String prenom) {
+        return enseignantRepository.findEnseignantByNomAndPrenom(nom, prenom);
     }
 
     public List<Enseignant> getEnseignantsByMatiere(String matiere) {
