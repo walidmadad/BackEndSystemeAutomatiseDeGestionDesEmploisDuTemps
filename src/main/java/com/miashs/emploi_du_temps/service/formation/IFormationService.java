@@ -7,13 +7,13 @@ import java.util.List;
 
 public interface IFormationService {
 
-    Formation ajouterFormation(FormationRequest formationRequest);
-    Formation modifierFormation(FormationRequest formationRequest, Long id);
-    void supprimerFormation(Long id);
+    Formation addFormation(FormationRequest formationRequest);
+    Formation updateFormation(FormationRequest formationRequest, Long id);
+    void deleteFormation(Long id);
 
     Formation getFormationById(Long id);
     List<Formation> getAllFormations();
-    Formation getFormationByName(String nom);
+    Formation getFormationByNom(String nom);
     List<Formation> getFormationsByNiveau(String niveau);
     List<Formation> getFormationsByDepartement(String departement);
     List<Formation> getFormationsByDepartementAndNiveau(String departement, String niveau);

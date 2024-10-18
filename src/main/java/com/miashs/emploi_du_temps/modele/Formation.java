@@ -2,12 +2,16 @@ package com.miashs.emploi_du_temps.modele;
 
 import com.fasterxml.jackson.annotation.JsonIgnore;
 import jakarta.persistence.*;
+import lombok.AllArgsConstructor;
 import lombok.Data;
+import lombok.NoArgsConstructor;
 
 import java.util.List;
 
 @Data
 @Entity
+@AllArgsConstructor
+@NoArgsConstructor
 public class Formation {
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
@@ -30,9 +34,4 @@ public class Formation {
     @OneToMany(mappedBy = "formation")
     private List<Cours> cours;
 
-    public Formation(String nom, Departement departement, Niveau niveau) {
-        this.nom = nom;
-        this.departement = departement;
-        this.niveau = niveau;
-    }
 }

@@ -18,57 +18,36 @@ import java.util.Optional;
 @RequiredArgsConstructor
 public class FormationService implements IFormationService{
     private final FormationRepository formationRepository;
-    private final DepartementRepository departementRepository;
-    private final NiveauRepository niveauRepository;
 
     @Override
-    public Formation ajouterFormation(FormationRequest request) {
-        Departement departement = Optional.ofNullable(departementRepository.findByName(request.getDepartement().getNom()))
-                .orElseGet(() -> {
-                    Departement newDepartement = new Departement(request.getDepartement().getNom());
-                    return departementRepository.save(newDepartement);
-                });
-        Niveau niveau = Optional.ofNullable(niveauRepository.findByNom(request.getNiveau().getNom()))
-                .orElseGet(() -> {
-                    Niveau newNiveau = new Niveau(request.getNiveau().getNom());
-                    return niveauRepository.save(newNiveau);
-                });
-        return formationRepository.save(creerFormation(request, departement, niveau));
-    }
-    public Formation creerFormation(FormationRequest request, Departement departement, Niveau niveau) {
-        return new Formation(
-                request.getNom(),
-                departement,
-                niveau
-        );
-    }
-
-
-    @Override
-    public Formation modifierFormation(FormationRequest request, Long id){
-        return formationRepository.findById(id)
-                .map(formationExistante -> modifierFormationExistante(formationExistante, request))
-                .map(formationRepository :: save)
-                .orElseThrow(()-> new ResourceNotFoundException("Formation non trouvée avec l'id : " + id));
-    }
-
-    private Formation modifierFormationExistante(Formation formation, FormationRequest request) {
+    public Formation addFormation(FormationRequest request) {
+        Formation formation = new Formation();
         formation.setNom(request.getNom());
         formation.setDepartement(request.getDepartement());
         formation.setNiveau(request.getNiveau());
 
-        Departement departement = departementRepository.findByName(request.getNom());
-        formation.setDepartement(departement);
-
-        Niveau niveau = niveauRepository.findByNom(request.getNom());
-        formation.setNiveau(niveau);
-
-        return formation;
+        return formationRepository.save(formation);
     }
 
 
     @Override
-    public void supprimerFormation(Long id) {
+    public Formation updateFormation(FormationRequest request, Long id){
+        Optional<Formation> formationExistant = formationRepository.findById(id);
+        if (formationExistant.isPresent()){
+            Formation formation = formationExistant.get();
+            formation.setNom(request.getNom());
+            formation.setDepartement(request.getDepartement());
+            formation.setNiveau(request.getNiveau());
+
+            return formationRepository.save(formation);
+        }else {
+            throw new ResourceNotFoundException("Formation non trouvée avec l'id : " + id);
+        }
+    }
+
+
+    @Override
+    public void deleteFormation(Long id) {
         formationRepository.deleteById(id);
     }
 
@@ -79,8 +58,8 @@ public class FormationService implements IFormationService{
     }
 
     @Override
-    public Formation getFormationByName(String nom) {
-        return formationRepository.findByName(nom);
+    public Formation getFormationByNom(String nom) {
+        return formationRepository.findByNom(nom);
     }
 
     @Override
