@@ -16,17 +16,23 @@ public class Cours {
     private Date jour;
     private Time heure_debut;
     private Time heure_fin;
+    private String TypeDeCours;
 
     @ManyToOne(cascade = CascadeType.ALL)
     @JoinColumn(name = "formation_id")
     private Formation formation;
 
-    @ManyToOne(cascade = {CascadeType.MERGE, CascadeType.PERSIST})
-    @JoinColumn(name = "enseignantMatiere_id")
-    private EnseignantMatiere enseignantMatiere;
+    @ManyToOne(cascade = CascadeType.ALL)
+    @JoinColumn(name = "enseignant_id")
+    private Enseignant enseignant;
+
+    @ManyToOne(cascade = CascadeType.ALL)
+    @JoinColumn(name = "matiere_id")
+    private Matiere matiere;
 
     @ManyToOne(cascade = CascadeType.ALL)
     @JoinColumn(name = "salle_id")
     private Salle salle;
+
 
 }
