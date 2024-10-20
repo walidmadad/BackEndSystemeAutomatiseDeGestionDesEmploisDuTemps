@@ -13,7 +13,7 @@ public interface IFormationService {
 
     Formation getFormationById(Long id);
     List<Formation> getAllFormations();
-    Formation getFormationByNom(String nom);
+    List<Formation> getFormationByNom(String nom);
     List<Formation> getFormationsByNiveau(String niveau);
     List<Formation> getFormationsByDepartement(String departement);
     List<Formation> getFormationsByDepartementAndNiveau(String departement, String niveau);

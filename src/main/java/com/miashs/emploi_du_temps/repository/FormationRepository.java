@@ -6,8 +6,8 @@ import org.springframework.data.jpa.repository.JpaRepository;
 import java.util.List;
 
 public interface FormationRepository extends JpaRepository<Formation,Long> {
-    Formation findByNom(String nom);
-    List<Formation> findByNiveau(String niveau);
-    List<Formation> findByDepartement(String nomDepartement);
-    List<Formation> findByDepartementAndNiveau(String nomDepartement, String niveau);
+    List<Formation> findByNom(String nom);
+    List<Formation> findByNiveauNom(String niveau);
+    List<Formation> findByDepartementNom(String departement);
+    List<Formation> findByDepartementNomAndNiveauNom(String departement, String niveau);
 }

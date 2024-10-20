@@ -1,6 +1,5 @@
 package com.miashs.emploi_du_temps.service.departement;
 
-import com.miashs.emploi_du_temps.Exception.AlreadyExistsException;
 import com.miashs.emploi_du_temps.Exception.ResourceNotFoundException;
 import com.miashs.emploi_du_temps.modele.Departement;
 import com.miashs.emploi_du_temps.repository.DepartementRepository;
@@ -40,8 +39,8 @@ public class DepartementService implements IDepartementService {
     public void deleteDepartement(Long id) {
         departementRepository.findById(id).
                 ifPresentOrElse(departementRepository :: delete, () -> {
-            throw new RuntimeException("Departement Not Found");
-        });
+                    throw new RuntimeException("Departement Not Found");
+                });
     }
 
     @Override
@@ -51,7 +50,7 @@ public class DepartementService implements IDepartementService {
     }
 
     @Override
-    public Departement getDepartementByNome(String nom) {
+    public Departement getDepartementByNom(String nom) {
         return departementRepository.findByNom(nom);
     }
 

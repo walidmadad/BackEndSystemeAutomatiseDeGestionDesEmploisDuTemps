@@ -18,11 +18,11 @@ public class Formation {
     private long id;
     private String nom;
 
-    @ManyToOne(cascade = CascadeType.ALL)
+    @ManyToOne
     @JoinColumn(name = "departement_id")
     private Departement departement;
 
-    @ManyToOne(cascade = CascadeType.ALL)
+    @ManyToOne
     @JoinColumn(name = "niveau_id")
     private Niveau niveau;
 

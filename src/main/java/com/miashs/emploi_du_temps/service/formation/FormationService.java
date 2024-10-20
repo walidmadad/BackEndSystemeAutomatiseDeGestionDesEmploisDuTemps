@@ -18,6 +18,8 @@ import java.util.Optional;
 @RequiredArgsConstructor
 public class FormationService implements IFormationService{
     private final FormationRepository formationRepository;
+    private final NiveauRepository niveauRepository;
+    private final DepartementRepository departementRepository;
 
     @Override
     public Formation addFormation(FormationRequest request) {
@@ -25,6 +27,20 @@ public class FormationService implements IFormationService{
         formation.setNom(request.getNom());
         formation.setDepartement(request.getDepartement());
         formation.setNiveau(request.getNiveau());
+
+        // Vérifiez si département est valide
+        if(request.getDepartement()!= null && request.getDepartement().getId() != 0){
+            Departement departement = departementRepository.findById(request.getDepartement().getId())
+                    .orElseThrow(() -> new ResourceNotFoundException("Département non trouvé"));
+            formation.setDepartement(departement);
+        }
+
+        // Vérifiez si Niveau est valide
+        if(request.getNiveau()!= null && request.getNiveau().getId()!= 0){
+            Niveau niveau = niveauRepository.findById(request.getNiveau().getId())
+                   .orElseThrow(() -> new ResourceNotFoundException("Niveau non trouvé"));
+            formation.setNiveau(niveau);
+        }
 
         return formationRepository.save(formation);
     }
@@ -54,11 +70,11 @@ public class FormationService implements IFormationService{
     @Override
     public Formation getFormationById(Long id) {
         return formationRepository.findById(id)
-               .orElseThrow(()-> new ResourceNotFoundException("Formation non trouvée avec l'id : " + id));
+                .orElseThrow(()-> new ResourceNotFoundException("Formation non trouvée avec l'id : " + id));
     }
 
     @Override
-    public Formation getFormationByNom(String nom) {
+    public List<Formation> getFormationByNom(String nom) {
         return formationRepository.findByNom(nom);
     }
 
@@ -69,16 +85,16 @@ public class FormationService implements IFormationService{
 
     @Override
     public List<Formation> getFormationsByNiveau(String niveau) {
-        return formationRepository.findByNiveau(niveau);
+        return formationRepository.findByNiveauNom(niveau);
     }
 
     @Override
     public List<Formation> getFormationsByDepartement(String departement) {
-        return formationRepository.findByDepartement(departement);
+        return formationRepository.findByDepartementNom(departement);
     }
 
     @Override
     public List<Formation> getFormationsByDepartementAndNiveau(String departement, String niveau) {
-        return formationRepository.findByDepartementAndNiveau(departement, niveau);
+        return formationRepository.findByDepartementNomAndNiveauNom(departement, niveau);
     }
 }

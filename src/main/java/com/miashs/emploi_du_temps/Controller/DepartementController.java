@@ -1,11 +1,14 @@
 package com.miashs.emploi_du_temps.Controller;
 
+import com.miashs.emploi_du_temps.modele.Departement;
 import com.miashs.emploi_du_temps.request.DepartementRequest;
 import com.miashs.emploi_du_temps.response.ApiResponse;
 import com.miashs.emploi_du_temps.service.departement.DepartementService;
 import lombok.RequiredArgsConstructor;
 import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.*;
+
+import java.util.List;
 
 import static org.springframework.http.HttpStatus.INTERNAL_SERVER_ERROR;
 import static org.springframework.http.HttpStatus.NOT_FOUND;
@@ -19,7 +22,8 @@ public class DepartementController {
     @PostMapping("/add")
     public ResponseEntity<ApiResponse> addDepartement(@RequestBody DepartementRequest departement) {
         try {
-            return ResponseEntity.ok(new ApiResponse("Département ajouté avec succès", departementService.addDepartement(departement)));
+            Departement theDepartement = departementService.addDepartement(departement);
+            return ResponseEntity.ok(new ApiResponse("Département ajouté avec succès", theDepartement));
         } catch (Exception e) {
             return ResponseEntity.status(INTERNAL_SERVER_ERROR).body(new ApiResponse("Erreur lors de l'ajout du département", INTERNAL_SERVER_ERROR));
         }
@@ -29,7 +33,8 @@ public class DepartementController {
     @PutMapping("/update/{id}")
     public ResponseEntity<ApiResponse> updateDepartement(@PathVariable Long id, @RequestBody DepartementRequest departement) {
         try {
-            return ResponseEntity.ok(new ApiResponse("Département modifié avec succès", departementService.updateDepartement(departement, id)));
+            Departement theDepartement = departementService.updateDepartement(departement, id);
+            return ResponseEntity.ok(new ApiResponse("Département modifié avec succès", theDepartement));
         } catch (Exception e) {
             return ResponseEntity.status(NOT_FOUND).body(new ApiResponse("Erreur lors de la modification du département", null));
         }
@@ -48,7 +53,8 @@ public class DepartementController {
     @GetMapping("/id/{id}")
     public ResponseEntity<ApiResponse> getDepartementById(@PathVariable Long id) {
         try {
-            return ResponseEntity.ok(new ApiResponse("success", departementService.getDepartementById(id)));
+            Departement departement = departementService.getDepartementById(id);
+            return ResponseEntity.ok(new ApiResponse("success", departement));
         } catch (Exception e) {
             return ResponseEntity.status(NOT_FOUND).body(new ApiResponse("Erreur lors de la récupération du département", null));
         }
@@ -57,7 +63,8 @@ public class DepartementController {
     @GetMapping("/name/{name}")
     public ResponseEntity<ApiResponse> getDepartementByName(@PathVariable String name) {
         try {
-            return ResponseEntity.ok(new ApiResponse("success", departementService.getDepartementByNom(name)));
+            Departement departement = departementService.getDepartementByNom(name);
+            return ResponseEntity.ok(new ApiResponse("success", departement));
         } catch (Exception e) {
             return ResponseEntity.status(NOT_FOUND).body(new ApiResponse("Erreur lors de la récupération du département", null));
         }
@@ -66,7 +73,8 @@ public class DepartementController {
     @GetMapping("/all")
     public ResponseEntity<ApiResponse> getAllDepartements() {
         try {
-            return ResponseEntity.ok(new ApiResponse("success", departementService.getAllDepartements()));
+            List<Departement> departements = departementService.getAllDepartements();
+            return ResponseEntity.ok(new ApiResponse("success", departements));
         } catch (Exception e) {
             return ResponseEntity.status(INTERNAL_SERVER_ERROR).body(new ApiResponse("Erreur lors de la récupération des départements", INTERNAL_SERVER_ERROR));
         }
