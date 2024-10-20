@@ -7,6 +7,6 @@ import java.util.List;
 
 public interface SalleRepository extends JpaRepository<Salle, Long> {
     List<Salle> findByNom(String nom);
-    List<Salle> findByDepartement(String nomDepartement);
+    List<Salle> findByDepartementNom(String departement);
     List<Salle> findByTypeSalle(String typeSalle);
 }

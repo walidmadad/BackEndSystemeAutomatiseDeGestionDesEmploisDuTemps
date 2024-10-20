@@ -20,7 +20,7 @@ public class Salle {
     private long capacite;
     private String typeSalle;
 
-    @ManyToOne(cascade = CascadeType.ALL)
+    @ManyToOne
     @JoinColumn(name = "departement_id")
     private Departement departement;
 
