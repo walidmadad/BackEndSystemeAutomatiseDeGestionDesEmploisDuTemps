@@ -8,6 +8,8 @@ import java.util.List;
 
 @Data
 @Entity
+@NoArgsConstructor
+@AllArgsConstructor
 public class Niveau {
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
@@ -18,7 +20,4 @@ public class Niveau {
     @OneToMany(mappedBy = "niveau")
     private List<Formation> formations;
 
-    public Niveau(String nom) {
-        this.nom = nom;
-    }
 }
