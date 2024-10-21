@@ -1,33 +1,30 @@
-package com.miashs.emploi_du_temps.modele;
+package com.miashs.emploi_du_temps.model;
 
 import com.fasterxml.jackson.annotation.JsonIgnore;
 import jakarta.persistence.*;
 import lombok.AllArgsConstructor;
-import lombok.Getter;
+import lombok.Data;
 import lombok.NoArgsConstructor;
-import lombok.Setter;
 
 import java.util.List;
 
-@Getter
-@Setter
+@Entity
+@Data
 @AllArgsConstructor
 @NoArgsConstructor
-@Entity
-public class Departement {
+public class Matiere {
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     private long id;
     private String nom;
+    private String code;
+
+    @ManyToOne
+    @JoinColumn(name = "formation_id")
+    private Formation formation;
 
     @JsonIgnore
-    @OneToMany(mappedBy = "departement")
-    List<Formation> formations;
-
-    @JsonIgnore
-    @OneToMany(mappedBy = "departement")
-    List<Salle> salles;
-
-
+    @OneToMany(mappedBy = "matiere")
+    private List<Cours> cours;
 
 }

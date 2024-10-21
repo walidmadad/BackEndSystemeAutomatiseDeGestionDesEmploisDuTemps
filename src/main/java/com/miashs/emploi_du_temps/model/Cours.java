@@ -1,4 +1,4 @@
-package com.miashs.emploi_du_temps.modele;
+package com.miashs.emploi_du_temps.model;
 
 import jakarta.persistence.*;
 import lombok.Data;
@@ -34,5 +34,8 @@ public class Cours {
     @JoinColumn(name = "salle_id")
     private Salle salle;
 
+    @ManyToOne(cascade = CascadeType.ALL)
+    @JoinColumn(name = "emploidetemps_id")
+    private EmploiDeTemps emploiDeTemps;
 
 }

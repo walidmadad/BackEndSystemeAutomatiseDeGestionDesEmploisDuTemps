@@ -1,9 +1,9 @@
 package com.miashs.emploi_du_temps.service.formation;
 
 import com.miashs.emploi_du_temps.Exception.ResourceNotFoundException;
-import com.miashs.emploi_du_temps.modele.Departement;
-import com.miashs.emploi_du_temps.modele.Formation;
-import com.miashs.emploi_du_temps.modele.Niveau;
+import com.miashs.emploi_du_temps.model.Departement;
+import com.miashs.emploi_du_temps.model.Formation;
+import com.miashs.emploi_du_temps.model.Niveau;
 import com.miashs.emploi_du_temps.repository.DepartementRepository;
 import com.miashs.emploi_du_temps.repository.FormationRepository;
 import com.miashs.emploi_du_temps.repository.NiveauRepository;

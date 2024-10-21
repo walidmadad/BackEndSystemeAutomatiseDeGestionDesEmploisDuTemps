@@ -1,6 +1,6 @@
 package com.miashs.emploi_du_temps.Controller;
 
-import com.miashs.emploi_du_temps.modele.Niveau;
+import com.miashs.emploi_du_temps.model.Niveau;
 import com.miashs.emploi_du_temps.request.NiveauRequest;
 import com.miashs.emploi_du_temps.response.ApiResponse;
 import com.miashs.emploi_du_temps.service.niveau.NiveauService;

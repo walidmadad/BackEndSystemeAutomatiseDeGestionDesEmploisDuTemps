@@ -1,4 +1,4 @@
-package com.miashs.emploi_du_temps.modele;
+package com.miashs.emploi_du_temps.model;
 
 import jakarta.persistence.Entity;
 import jakarta.persistence.GeneratedValue;
@@ -8,8 +8,9 @@ import lombok.Data;
 
 @Data
 @Entity
-public class EmploiDeTemps {
+public class Occupation {
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     private long id;
+
 }

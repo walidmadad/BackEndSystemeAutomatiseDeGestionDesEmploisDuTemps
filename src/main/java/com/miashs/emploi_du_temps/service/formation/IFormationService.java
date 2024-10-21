@@ -1,6 +1,6 @@
 package com.miashs.emploi_du_temps.service.formation;
 
-import com.miashs.emploi_du_temps.modele.Formation;
+import com.miashs.emploi_du_temps.model.Formation;
 import com.miashs.emploi_du_temps.request.FormationRequest;
 
 import java.util.List;

@@ -1,6 +1,6 @@
 package com.miashs.emploi_du_temps.Controller;
 
-import com.miashs.emploi_du_temps.modele.Formation;
+import com.miashs.emploi_du_temps.model.Formation;
 import com.miashs.emploi_du_temps.request.FormationRequest;
 import com.miashs.emploi_du_temps.response.ApiResponse;
 import com.miashs.emploi_du_temps.service.formation.FormationService;
@@ -15,7 +15,7 @@ import static org.springframework.http.HttpStatus.*;
 @RestController
 @RequiredArgsConstructor
 @RequestMapping("${api.prefix}/formations")
-public class FormationControlleur {
+public class FormationController {
     private final FormationService formationService;
 
     @PostMapping("/add")

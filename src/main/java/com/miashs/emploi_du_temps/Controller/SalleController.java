@@ -1,6 +1,6 @@
 package com.miashs.emploi_du_temps.Controller;
 
-import com.miashs.emploi_du_temps.modele.Salle;
+import com.miashs.emploi_du_temps.model.Salle;
 import com.miashs.emploi_du_temps.request.SalleRequest;
 import com.miashs.emploi_du_temps.response.ApiResponse;
 import com.miashs.emploi_du_temps.service.salle.SalleService;

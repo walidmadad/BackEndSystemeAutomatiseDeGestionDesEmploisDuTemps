@@ -1,8 +1,8 @@
 package com.miashs.emploi_du_temps.service.salle;
 
 import com.miashs.emploi_du_temps.Exception.ResourceNotFoundException;
-import com.miashs.emploi_du_temps.modele.Departement;
-import com.miashs.emploi_du_temps.modele.Salle;
+import com.miashs.emploi_du_temps.model.Departement;
+import com.miashs.emploi_du_temps.model.Salle;
 import com.miashs.emploi_du_temps.repository.DepartementRepository;
 import com.miashs.emploi_du_temps.repository.SalleRepository;
 import com.miashs.emploi_du_temps.request.SalleRequest;

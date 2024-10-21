@@ -1,23 +1,20 @@
-package com.miashs.emploi_du_temps.modele;
+package com.miashs.emploi_du_temps.model;
 
 import com.fasterxml.jackson.annotation.JsonIgnore;
 import jakarta.persistence.*;
-import lombok.*;
+import lombok.Data;
 
 import java.util.List;
 
 @Data
 @Entity
-@NoArgsConstructor
-@AllArgsConstructor
-public class Niveau {
+public class EmploiDeTemps {
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     private long id;
-    private String nom;
 
     @JsonIgnore
-    @OneToMany(mappedBy = "niveau")
-    private List<Formation> formations;
+    @OneToMany(mappedBy = "emploiDeTemps")
+    private List<Cours> cours;
 
 }

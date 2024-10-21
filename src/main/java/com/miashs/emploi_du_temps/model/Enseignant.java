@@ -1,4 +1,4 @@
-package com.miashs.emploi_du_temps.modele;
+package com.miashs.emploi_du_temps.model;
 
 import com.fasterxml.jackson.annotation.JsonIgnore;
 import jakarta.persistence.*;
@@ -6,32 +6,35 @@ import lombok.AllArgsConstructor;
 import lombok.Data;
 import lombok.NoArgsConstructor;
 
+import java.util.Date;
 import java.util.List;
 
 @Data
 @Entity
 @AllArgsConstructor
 @NoArgsConstructor
-public class Formation {
+public class Enseignant {
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     private long id;
     private String nom;
+    private String prenom;
+    private Date date_joining;
+    private String email;
+    private String mdp;
 
-    @ManyToOne
-    @JoinColumn(name = "departement_id")
-    private Departement departement;
-
-    @ManyToOne
-    @JoinColumn(name = "niveau_id")
-    private Niveau niveau;
 
     @JsonIgnore
-    @OneToMany(mappedBy = "formation")
-    private List<Matiere> matieres;
+    @OneToMany(mappedBy = "enseignant")
+    private List<Notification> notifications;
 
     @JsonIgnore
-    @OneToMany(mappedBy = "formation")
+    @OneToMany(mappedBy = "enseignant")
+    private List<Contrainte> Contraintes;
+
+    @JsonIgnore
+    @OneToMany(mappedBy = "enseignant")
     private List<Cours> cours;
+
 
 }

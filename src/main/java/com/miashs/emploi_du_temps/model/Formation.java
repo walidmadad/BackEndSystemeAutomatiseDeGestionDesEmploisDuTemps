@@ -1,4 +1,4 @@
-package com.miashs.emploi_du_temps.modele;
+package com.miashs.emploi_du_temps.model;
 
 import com.fasterxml.jackson.annotation.JsonIgnore;
 import jakarta.persistence.*;
@@ -10,22 +10,28 @@ import java.util.List;
 
 @Data
 @Entity
-@NoArgsConstructor
 @AllArgsConstructor
-public class Salle {
+@NoArgsConstructor
+public class Formation {
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     private long id;
     private String nom;
-    private long capacite;
-    private String typeSalle;
 
     @ManyToOne
     @JoinColumn(name = "departement_id")
     private Departement departement;
 
+    @ManyToOne
+    @JoinColumn(name = "niveau_id")
+    private Niveau niveau;
+
     @JsonIgnore
-    @OneToMany(mappedBy = "salle")
+    @OneToMany(mappedBy = "formation")
+    private List<Matiere> matieres;
+
+    @JsonIgnore
+    @OneToMany(mappedBy = "formation")
     private List<Cours> cours;
 
 }

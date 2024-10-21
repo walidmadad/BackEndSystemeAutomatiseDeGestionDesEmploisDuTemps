@@ -1,6 +1,6 @@
 package com.miashs.emploi_du_temps.service.salle;
 
-import com.miashs.emploi_du_temps.modele.Salle;
+import com.miashs.emploi_du_temps.model.Salle;
 import com.miashs.emploi_du_temps.request.SalleRequest;
 
 import java.util.List;

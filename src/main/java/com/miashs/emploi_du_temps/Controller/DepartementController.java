@@ -1,6 +1,6 @@
 package com.miashs.emploi_du_temps.Controller;
 
-import com.miashs.emploi_du_temps.modele.Departement;
+import com.miashs.emploi_du_temps.model.Departement;
 import com.miashs.emploi_du_temps.request.DepartementRequest;
 import com.miashs.emploi_du_temps.response.ApiResponse;
 import com.miashs.emploi_du_temps.service.departement.DepartementService;

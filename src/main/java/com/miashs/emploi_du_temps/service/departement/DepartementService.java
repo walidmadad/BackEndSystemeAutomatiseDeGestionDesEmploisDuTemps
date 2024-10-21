@@ -1,7 +1,7 @@
 package com.miashs.emploi_du_temps.service.departement;
 
 import com.miashs.emploi_du_temps.Exception.ResourceNotFoundException;
-import com.miashs.emploi_du_temps.modele.Departement;
+import com.miashs.emploi_du_temps.model.Departement;
 import com.miashs.emploi_du_temps.repository.DepartementRepository;
 import com.miashs.emploi_du_temps.request.DepartementRequest;
 import lombok.RequiredArgsConstructor;
