@@ -9,7 +9,7 @@ import java.util.List;
 public interface IEnseignantService {
 
     Enseignant addEnseignant(EnseignantRequest enseignantRequest);
-    Enseignant updateenseignant(EnseignantRequest enseignantRequest, Long id);
+    Enseignant updateEnseignant(EnseignantRequest enseignantRequest, Long id);
     void deleteEnseignant(Long id);
 
     List<Enseignant> getAllEnseignant();

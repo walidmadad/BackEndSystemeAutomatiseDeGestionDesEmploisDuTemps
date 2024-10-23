@@ -1,5 +1,6 @@
 package com.miashs.emploi_du_temps.service.enseignant;
 
+import com.miashs.emploi_du_temps.Exception.ResourceNotFoundException;
 import com.miashs.emploi_du_temps.model.Enseignant;
 import com.miashs.emploi_du_temps.repository.EnseignantRepository;
 import com.miashs.emploi_du_temps.request.EnseignantRequest;
@@ -7,6 +8,7 @@ import lombok.RequiredArgsConstructor;
 import org.springframework.stereotype.Service;
 
 import java.util.List;
+import java.util.Optional;
 
 @Service
 @RequiredArgsConstructor
@@ -28,8 +30,22 @@ public class EnseignantService implements IEnseignantService{
     }
 
     @Override
-    public Enseignant updateenseignant(EnseignantRequest enseignantRequest, Long id) {
-        return null;
+    public Enseignant updateEnseignant(EnseignantRequest enseignantRequest, Long id) {
+
+        Optional<Enseignant> enseignantExistant = enseignantRepository.findById(id);
+        if(enseignantExistant.isPresent())
+        {
+            Enseignant enseignant = enseignantExistant.get();
+            enseignant.setNom(enseignantRequest.getNom());
+            enseignant.setPrenom(enseignantRequest.getPrenom());
+            enseignant.setEmail(enseignantRequest.getEmail());
+            enseignant.setMdp(enseignantRequest.getMdp());
+            enseignant.setDate_entre(enseignantRequest.getDate_entre());
+            return enseignantRepository.save(enseignant);
+        } else { throw new ResourceNotFoundException("Formation non trouvé avec ID : "+id);
+        }
+
+
     }
 
     @Override

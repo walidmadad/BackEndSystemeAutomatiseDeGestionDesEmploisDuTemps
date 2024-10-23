@@ -14,8 +14,8 @@ import org.springframework.stereotype.Service;
 import java.util.List;
 import java.util.Optional;
 
-@Service
-@RequiredArgsConstructor
+    @Service
+    @RequiredArgsConstructor
 public class FormationService implements IFormationService{
     private final FormationRepository formationRepository;
     private final NiveauRepository niveauRepository;
