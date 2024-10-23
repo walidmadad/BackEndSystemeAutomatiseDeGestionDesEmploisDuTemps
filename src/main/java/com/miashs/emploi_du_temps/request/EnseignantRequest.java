@@ -9,7 +9,7 @@ import java.util.List;
 
 @Data
 public class EnseignantRequest {
-    private long ID;
+    private long id;
     private String nom;
     private String prenom;
     private Date date_entre;

@@ -6,14 +6,25 @@ import com.miashs.emploi_du_temps.request.EnseignantRequest;
 import lombok.RequiredArgsConstructor;
 import org.springframework.stereotype.Service;
 
+import java.util.List;
+
 @Service
 @RequiredArgsConstructor
 public class EnseignantService implements IEnseignantService{
     private final EnseignantRepository enseignantRepository;
     
     @Override
-    public Enseignant addenseignant(EnseignantRequest enseignantRequest) {
-        return null;
+    public Enseignant addEnseignant(EnseignantRequest enseignantRequest) {
+       Enseignant enseignant = new Enseignant();
+       enseignant.setNom(enseignantRequest.getNom());
+       enseignant.setPrenom(enseignantRequest.getPrenom());
+       enseignant.setEmail(enseignantRequest.getEmail());
+     enseignant.setMdp(enseignantRequest.getMdp());
+      enseignant.setDate_entre(enseignantRequest.getDate_entre());
+
+
+
+        return enseignantRepository.save(enseignant);
     }
 
     @Override
@@ -24,6 +35,13 @@ public class EnseignantService implements IEnseignantService{
     @Override
     public void deleteEnseignant(Long id) {
 
+    }
+
+
+    @Override
+    public List<Enseignant> getAllEnseignant()
+    {
+        return enseignantRepository.findAll();
     }
 
     @Override
