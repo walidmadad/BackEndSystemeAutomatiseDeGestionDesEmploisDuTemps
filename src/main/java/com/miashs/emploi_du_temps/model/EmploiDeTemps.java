@@ -13,8 +13,5 @@ public class EmploiDeTemps {
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     private long id;
 
-    @JsonIgnore
-    @OneToMany(mappedBy = "emploiDeTemps")
-    private List<Cours> cours;
 
 }
