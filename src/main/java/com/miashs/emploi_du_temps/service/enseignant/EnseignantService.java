@@ -96,7 +96,7 @@ public class EnseignantService implements IEnseignantService{
     }
 
     @Override
-    public Enseignant getEnseignantByNomAndPrenom(String nom, String prenom) {
+    public List<Enseignant> getEnseignantByNomAndPrenom(String nom, String prenom) {
         return enseignantRepository.findByNomAndPrenom(nom, prenom);
     }
 }

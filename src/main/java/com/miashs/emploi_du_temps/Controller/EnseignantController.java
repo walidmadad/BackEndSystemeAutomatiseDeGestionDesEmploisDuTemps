@@ -115,4 +115,14 @@ public class EnseignantController {
         }
     }
 
+    @GetMapping("/get-by-nom-and-prenom")
+    public ResponseEntity<ApiResponse> getEnseignantByNomAndPrenom(@RequestParam String nom, @RequestParam String prenom) {
+        try {
+            List<Enseignant> enseignants = enseignantService.getEnseignantByNomAndPrenom(nom, prenom);
+            return ResponseEntity.ok(new ApiResponse("Enseignants trouvés", enseignants));
+        } catch (Exception e) {
+            return ResponseEntity.status(NOT_FOUND).body(new ApiResponse("Erreur lors de la recherche de l'enseignant", null));
+        }
+    }
+
 }

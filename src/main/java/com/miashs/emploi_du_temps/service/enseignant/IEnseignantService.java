@@ -16,6 +16,6 @@ public interface IEnseignantService {
     List<Enseignant> getEnseignantByNom(String nom);
     List<Enseignant> getEnseignantByPrenom(String prenom);
     Enseignant getEnseignantByEmail(String email);
-    Enseignant getEnseignantByNomAndPrenom(String nom, String prenom);
+    List<Enseignant> getEnseignantByNomAndPrenom(String nom, String prenom);
     Boolean verifierConnexionEnseignant(String email, String motDePasse);
 }
