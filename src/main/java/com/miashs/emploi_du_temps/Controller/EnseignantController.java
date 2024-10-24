@@ -4,6 +4,7 @@ import com.miashs.emploi_du_temps.model.Enseignant;
 import com.miashs.emploi_du_temps.request.EnseignantRequest;
 import com.miashs.emploi_du_temps.response.ApiResponse;
 import com.miashs.emploi_du_temps.service.enseignant.EnseignantService;
+import jakarta.validation.constraints.Null;
 import lombok.RequiredArgsConstructor;
 import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
@@ -59,6 +60,19 @@ public class EnseignantController {
         } else {
             return ResponseEntity.status(HttpStatus.UNAUTHORIZED)
                     .body(new ApiResponse("Identifiants invalides", false));
+        }
+    }
+    @DeleteMapping("/delete/{id}")
+    public ResponseEntity<ApiResponse> deleteenseignant (@PathVariable long id)
+    {
+        try
+        {
+            enseignantService.deleteEnseignant(id);
+            return ResponseEntity.ok(new ApiResponse("enseignant avec ID "+id+" a été bien enrégistrer", null));
+        } catch (Exception e)
+        {
+            return ResponseEntity.status(NOT_FOUND).body(new ApiResponse("Erreur lors de supprimer l'enseignant", null));
+
         }
     }
 
