@@ -50,7 +50,13 @@ public class EnseignantService implements IEnseignantService{
 
     @Override
     public void deleteEnseignant(Long id) {
-
+        Optional<Enseignant> enseignantExistant = enseignantRepository.findById(id);
+        if(enseignantExistant.isPresent())
+        {
+            enseignantRepository.deleteById(id);
+        } else {
+            throw new ResourceNotFoundException("Formation non trouvé avec ID : " + id);
+        }
     }
 
 
