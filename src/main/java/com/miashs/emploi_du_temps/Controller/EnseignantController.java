@@ -5,6 +5,7 @@ import com.miashs.emploi_du_temps.request.EnseignantRequest;
 import com.miashs.emploi_du_temps.response.ApiResponse;
 import com.miashs.emploi_du_temps.service.enseignant.EnseignantService;
 import lombok.RequiredArgsConstructor;
+import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.*;
 
@@ -48,6 +49,16 @@ public class EnseignantController {
             return ResponseEntity.ok(new ApiResponse("enseignant a été bien enrégistrer",enseignant));
         }catch (Exception e) {
             return ResponseEntity.status(NOT_FOUND).body(new ApiResponse("Erreur lors de modifier l'enseignant", null));
+        }
+    }
+    @PostMapping("/verify")
+    public ResponseEntity<ApiResponse> verifierConnexionEnseignant(@RequestParam String email, @RequestParam String motDePasse) {
+        Boolean isVerified = enseignantService.verifierConnexionEnseignant(email, motDePasse);
+        if (isVerified) {
+            return ResponseEntity.ok(new ApiResponse("Vérification réussie", true));
+        } else {
+            return ResponseEntity.status(HttpStatus.UNAUTHORIZED)
+                    .body(new ApiResponse("Identifiants invalides", false));
         }
     }
 

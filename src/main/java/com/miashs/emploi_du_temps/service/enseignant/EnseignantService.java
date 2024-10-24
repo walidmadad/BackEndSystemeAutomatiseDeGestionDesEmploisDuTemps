@@ -77,6 +77,20 @@ public class EnseignantService implements IEnseignantService{
 
     @Override
     public Enseignant getEnseignantByEmail(String email) {
-        return null;
+        return enseignantRepository.findByEmail(email);
+    }
+
+    @Override
+    public Boolean verifierConnexionEnseignant(String email, String motDePasse) {
+        Enseignant enseignant = enseignantRepository.findByEmail(email);
+
+        if (enseignant != null) {
+
+            if (motDePasse.equals(enseignant.getMotDePasse())) {
+                return true;
+            }
+        }
+
+        return false;
     }
 }
