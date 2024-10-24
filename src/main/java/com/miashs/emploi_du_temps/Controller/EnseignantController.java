@@ -63,7 +63,7 @@ public class EnseignantController {
         }
     }
     @DeleteMapping("/delete/{id}")
-    public ResponseEntity<ApiResponse> deleteenseignant (@PathVariable long id)
+    public ResponseEntity<ApiResponse> deleteEnseignant (@PathVariable long id)
     {
         try
         {
@@ -73,6 +73,45 @@ public class EnseignantController {
         {
             return ResponseEntity.status(NOT_FOUND).body(new ApiResponse("Erreur lors de supprimer l'enseignant", null));
 
+        }
+    }
+
+    @GetMapping("/id/{id}")
+    public ResponseEntity<ApiResponse> getEnseignantById(@PathVariable Long id){
+        try {
+            Enseignant enseignant = enseignantService.getEnseignantById(id);
+            return ResponseEntity.ok(new ApiResponse("Enseignant trouvé", enseignant));
+        } catch (Exception e) {
+            return ResponseEntity.status(NOT_FOUND).body(new ApiResponse("Erreur lors de la recherche de l'enseignant", null));
+        }
+    }
+
+    @GetMapping("/nom/{nom}")
+    public ResponseEntity<ApiResponse> getEnseignantByNom(@PathVariable String nom) {
+        try {
+            List<Enseignant> enseignants = enseignantService.getEnseignantByNom(nom);
+            return ResponseEntity.ok(new ApiResponse("Enseignants trouvés", enseignants));
+        } catch (Exception e) {
+            return ResponseEntity.status(NOT_FOUND).body(new ApiResponse("Erreur lors de la recherche de l'enseignant", null));
+        }
+    }
+    @GetMapping("/prenom/{prenom}")
+    public ResponseEntity<ApiResponse> getEnseignantByPrenom(@PathVariable String prenom) {
+        try {
+            List<Enseignant> enseignants = enseignantService.getEnseignantByPrenom(prenom);
+            return ResponseEntity.ok(new ApiResponse("Enseignants trouvés", enseignants));
+        } catch (Exception e) {
+            return ResponseEntity.status(NOT_FOUND).body(new ApiResponse("Erreur lors de la recherche de l'enseignant", null));
+        }
+    }
+
+    @GetMapping("/email/{email}")
+    public ResponseEntity<ApiResponse> getEnseignantByEmail(@PathVariable String email) {
+        try {
+            Enseignant enseignant = enseignantService.getEnseignantByEmail(email);
+            return ResponseEntity.ok(new ApiResponse("Enseignant trouvé", enseignant));
+        } catch (Exception e) {
+            return ResponseEntity.status(NOT_FOUND).body(new ApiResponse("Erreur lors de la recherche de l'enseignant", null));
         }
     }
 

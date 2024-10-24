@@ -1,7 +1,6 @@
 package com.miashs.emploi_du_temps.service.enseignant;
 
 import com.miashs.emploi_du_temps.model.Enseignant;
-import com.miashs.emploi_du_temps.model.Formation;
 import com.miashs.emploi_du_temps.request.EnseignantRequest;
 
 import java.util.List;
@@ -13,9 +12,10 @@ public interface IEnseignantService {
     void deleteEnseignant(Long id);
 
     List<Enseignant> getAllEnseignant();
-    Enseignant getEnseignantByID (long Id);
-    Enseignant getEnseignantByNom (String nom);
-    Enseignant getEnseignantByPrenom (String prenom);
-    Enseignant getEnseignantByEmail (String email);
+    Enseignant getEnseignantById(Long id);
+    List<Enseignant> getEnseignantByNom(String nom);
+    List<Enseignant> getEnseignantByPrenom(String prenom);
+    Enseignant getEnseignantByEmail(String email);
+    Enseignant getEnseignantByNomAndPrenom(String nom, String prenom);
     Boolean verifierConnexionEnseignant(String email, String motDePasse);
 }
