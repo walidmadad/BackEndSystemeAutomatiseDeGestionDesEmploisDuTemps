@@ -26,6 +26,6 @@ public class Salle {
 
     @JsonIgnore
     @OneToMany(mappedBy = "salle")
-    private List<Cours> cours;
+    private List<Occupation> occupations;
 
 }

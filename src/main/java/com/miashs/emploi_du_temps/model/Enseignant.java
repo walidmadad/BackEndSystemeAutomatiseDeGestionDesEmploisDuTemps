@@ -6,23 +6,16 @@ import lombok.AllArgsConstructor;
 import lombok.Data;
 import lombok.NoArgsConstructor;
 
+import java.time.LocalDate;
 import java.util.Date;
 import java.util.List;
 
-@Data
 @Entity
-@AllArgsConstructor
-@NoArgsConstructor
-public class Enseignant {
-    @Id
-    @GeneratedValue(strategy = GenerationType.IDENTITY)
-    private long id;
-    private String nom;
-    private String prenom;
-    private Date date_joining;
-    private String email;
-    private String mdp;
+@Data
+@DiscriminatorValue("ENSEIGNANT")
+public class Enseignant extends Utilisateur{
 
+    private LocalDate dateEntree;
 
     @JsonIgnore
     @OneToMany(mappedBy = "enseignant")

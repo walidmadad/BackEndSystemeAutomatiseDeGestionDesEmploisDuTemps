@@ -6,12 +6,14 @@ import lombok.Data;
 
 import java.util.List;
 
-@Data
 @Entity
-public class EmploiDeTemps {
+@Data
+public class Equipement {
+
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     private long id;
+    private String Nom;
 
 
-}
+  }
