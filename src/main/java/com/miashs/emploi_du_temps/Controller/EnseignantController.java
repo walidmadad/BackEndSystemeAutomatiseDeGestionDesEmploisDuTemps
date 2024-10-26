@@ -4,7 +4,6 @@ import com.miashs.emploi_du_temps.model.Enseignant;
 import com.miashs.emploi_du_temps.request.EnseignantRequest;
 import com.miashs.emploi_du_temps.response.ApiResponse;
 import com.miashs.emploi_du_temps.service.enseignant.EnseignantService;
-import jakarta.validation.constraints.Null;
 import lombok.RequiredArgsConstructor;
 import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;

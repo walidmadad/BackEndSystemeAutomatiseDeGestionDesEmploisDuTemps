@@ -24,8 +24,6 @@ public class EnseignantService implements IEnseignantService{
         enseignant.setMotDePasse(enseignantRequest.getMotDePasse());
         enseignant.setDateEntree(enseignantRequest.getDateEntree());
 
-
-
         return enseignantRepository.save(enseignant);
     }
 
