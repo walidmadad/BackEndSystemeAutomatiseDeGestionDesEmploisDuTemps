@@ -24,8 +24,6 @@ public class EnseignantService implements IEnseignantService{
         enseignant.setMotDePasse(enseignantRequest.getMotDePasse());
         enseignant.setDateEntree(enseignantRequest.getDateEntree());
 
-
-
         return enseignantRepository.save(enseignant);
     }
 
@@ -50,33 +48,53 @@ public class EnseignantService implements IEnseignantService{
 
     @Override
     public void deleteEnseignant(Long id) {
-
+        Optional<Enseignant> enseignantExistant = enseignantRepository.findById(id);
+        if(enseignantExistant.isPresent())
+        {
+            enseignantRepository.deleteById(id);
+        } else {
+            throw new ResourceNotFoundException("Formation non trouvé avec ID : " + id);
+        }
     }
 
 
     @Override
-    public List<Enseignant> getAllEnseignant()
-    {
+    public List<Enseignant> getAllEnseignant() {
         return enseignantRepository.findAll();
     }
 
     @Override
-    public Enseignant getEnseignantByID(long Id) {
-        return null;
+    public Enseignant getEnseignantById(Long id) {
+        return enseignantRepository.findById(id)
+                .orElseThrow(() -> new ResourceNotFoundException("Enseignant non trouvé avec ID : " + id));
     }
 
     @Override
-    public Enseignant getEnseignantByNom(String nom) {
-        return null;
+    public List<Enseignant> getEnseignantByNom(String nom) {
+        return enseignantRepository.findByNom(nom);
     }
 
     @Override
-    public Enseignant getEnseignantByPrenom(String prenom) {
-        return null;
+    public List<Enseignant> getEnseignantByPrenom(String prenom) {
+        return enseignantRepository.findByPrenom(prenom);
     }
 
     @Override
     public Enseignant getEnseignantByEmail(String email) {
-        return null;
+        return enseignantRepository.findByEmail(email);
+    }
+
+    @Override
+    public Boolean verifierConnexionEnseignant(String email, String motDePasse) {
+        Enseignant enseignant = enseignantRepository.findByEmail(email);
+        if (enseignant != null) {
+            return motDePasse.equals(enseignant.getMotDePasse());
+        }
+        return false;
+    }
+
+    @Override
+    public List<Enseignant> getEnseignantByNomAndPrenom(String nom, String prenom) {
+        return enseignantRepository.findByNomAndPrenom(nom, prenom);
     }
 }
