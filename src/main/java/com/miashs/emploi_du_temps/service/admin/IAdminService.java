@@ -18,4 +18,5 @@ public interface IAdminService {
     List<Admin> getAdminsByNom(String nom);
     List<Admin> getAdminsByPrenom(String prenom);
     List<Admin> getAdminsByDepartement(String departement);
+    Boolean verifyConnexionAdmin(String email, String motDePasse);
 }
