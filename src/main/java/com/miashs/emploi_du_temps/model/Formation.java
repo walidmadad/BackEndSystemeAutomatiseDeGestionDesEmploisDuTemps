@@ -30,8 +30,8 @@ public class Formation {
     @OneToMany(mappedBy = "formation")
     private List<Matiere> matieres;
 
-    @JsonIgnore
-    @OneToMany(mappedBy = "formation")
-    private List<Cours> cours;
+   @JsonIgnore
+   @OneToMany(mappedBy = "formation")
+   private List<Cours> cours;
 
 }

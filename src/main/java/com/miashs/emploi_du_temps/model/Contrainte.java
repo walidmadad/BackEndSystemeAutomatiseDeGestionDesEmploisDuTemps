@@ -23,7 +23,7 @@ public class Contrainte {
     private LocalDateTime dateDebut;
     private LocalDateTime dateFin;
 
-    @ManyToOne(cascade = CascadeType.ALL)
+    @ManyToOne
     @JoinColumn(name = "enseignant_id")
     private Enseignant enseignant;
 }

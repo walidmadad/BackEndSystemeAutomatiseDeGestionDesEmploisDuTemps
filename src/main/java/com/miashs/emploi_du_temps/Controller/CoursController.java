@@ -30,7 +30,7 @@ public class CoursController {
             Cours cours = coursService.addCours(coursRequest);
             return ResponseEntity.ok( new ApiResponse("Le cours est bien enregistré",cours));
         } catch (Exception e) {
-            return ResponseEntity.status(INTERNAL_SERVER_ERROR).body(new ApiResponse("Erreur lors de l'ajout du Cours", INTERNAL_SERVER_ERROR));
+            return ResponseEntity.status(INTERNAL_SERVER_ERROR).body(new ApiResponse(e.getMessage(), INTERNAL_SERVER_ERROR));
         }
     }
 

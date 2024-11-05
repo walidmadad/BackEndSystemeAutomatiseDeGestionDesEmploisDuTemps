@@ -20,15 +20,15 @@ public class Cours {
 
     private String typedecours;
 
-    @ManyToOne(cascade = CascadeType.ALL)
-    @JoinColumn(name = "formation_id")
-    private Formation formation;
+   @ManyToOne
+   @JoinColumn(name = "formation_id")
+   private Formation formation;
 
-    @ManyToOne(cascade = CascadeType.ALL)
+    @ManyToOne
     @JoinColumn(name = "enseignant_id")
     private Enseignant enseignant;
 
-    @ManyToOne(cascade = CascadeType.ALL)
+    @ManyToOne
     @JoinColumn(name = "matiere_id")
     private Matiere matiere;
 

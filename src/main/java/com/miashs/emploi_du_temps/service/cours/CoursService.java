@@ -2,8 +2,10 @@ package com.miashs.emploi_du_temps.service.cours;
 
 import com.miashs.emploi_du_temps.Exception.ResourceNotFoundException;
 import com.miashs.emploi_du_temps.model.Cours;
+import com.miashs.emploi_du_temps.model.Matiere;
 import com.miashs.emploi_du_temps.repository.CoursRepository;
 import com.miashs.emploi_du_temps.request.CoursRequest;
+import com.miashs.emploi_du_temps.service.matiere.MatiereService;
 import lombok.AllArgsConstructor;
 import lombok.RequiredArgsConstructor;
 import org.springframework.stereotype.Service;
@@ -16,13 +18,15 @@ import java.util.Optional;
 public class CoursService implements ICoursService {
 
     private final CoursRepository coursRepository;
+    private final MatiereService matiereService;
     @Override
     public Cours addCours(CoursRequest coursRequest) {
         Cours cours = new Cours();
         cours.setEnseignant(coursRequest.getEnseignant());
         cours.setMatiere(coursRequest.getMatiere());
         cours.setTypedecours(coursRequest.getTypeDeCours());
-        cours.setFormation(coursRequest.getFormation());
+        Matiere matiere = matiereService.getMatiereById(coursRequest.getMatiere().getId());
+        cours.setFormation(matiere.getFormation());
         return coursRepository.save(cours);
     }
 
