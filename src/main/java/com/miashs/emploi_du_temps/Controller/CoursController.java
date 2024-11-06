@@ -16,7 +16,7 @@ import static org.springframework.http.HttpStatus.INTERNAL_SERVER_ERROR;
 
 @RequiredArgsConstructor
 @RestController
-@RequestMapping("${api.prefix}/Cours")
+@RequestMapping("${api.prefix}/cours")
 public class CoursController {
     private final CoursService coursService;
 

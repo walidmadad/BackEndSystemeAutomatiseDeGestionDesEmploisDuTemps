@@ -28,4 +28,6 @@ public class Salle {
     @OneToMany(mappedBy = "salle")
     private List<Occupation> occupations;
 
+    @OneToMany(mappedBy = "salle")
+    private List<Equipement> equipements;
 }

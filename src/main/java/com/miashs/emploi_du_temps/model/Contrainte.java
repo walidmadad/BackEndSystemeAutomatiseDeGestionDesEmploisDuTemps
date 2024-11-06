@@ -18,7 +18,7 @@ public class Contrainte {
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     private long id;
     private String titre;
-    private String typeContraite ;
+    private String typecontraite ;
     private String description;
     private LocalDateTime dateDebut;
     private LocalDateTime dateFin;

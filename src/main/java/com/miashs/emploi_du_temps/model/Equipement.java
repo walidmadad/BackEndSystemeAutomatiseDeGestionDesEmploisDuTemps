@@ -13,7 +13,13 @@ public class Equipement {
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     private long id;
-    private String Nom;
+    private String nom;
+
+
+    @ManyToOne
+    @JoinColumn(name = "salle_id")
+    private Salle salle;
+
 
 
   }

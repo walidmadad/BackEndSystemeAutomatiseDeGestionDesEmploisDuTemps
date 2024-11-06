@@ -27,7 +27,7 @@ public class EnseignantController {
 
         try {
             Enseignant enseignant = enseignantService.addEnseignant(enseignantRequest);
-            return ResponseEntity.ok(new ApiResponse("ajout de l'eseignant a ete fait", enseignant));
+            return ResponseEntity.ok(new ApiResponse("ajout de l'enseignant a ete fait", enseignant));
         } catch (Exception e) {
             return ResponseEntity.status(NOT_FOUND).body(new ApiResponse("Erreur lors de l'ajout de l'enseignant ", null));
         }
@@ -36,7 +36,7 @@ public class EnseignantController {
     public ResponseEntity<ApiResponse> getAllEnseignant () {
         try {
             List<Enseignant> enseignants = enseignantService.getAllEnseignant();
-            return ResponseEntity.ok(new ApiResponse("Formations trouvées", enseignants));
+            return ResponseEntity.ok(new ApiResponse("Enseignants trouvées", enseignants));
         } catch (Exception e) {
             return ResponseEntity.status(INTERNAL_SERVER_ERROR).body(new ApiResponse("Erreur lors de la récupération de toutes les enseigants", INTERNAL_SERVER_ERROR));
         }
