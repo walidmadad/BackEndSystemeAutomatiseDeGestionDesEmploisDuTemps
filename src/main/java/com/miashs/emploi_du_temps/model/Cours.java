@@ -5,8 +5,9 @@ import lombok.AllArgsConstructor;
 import lombok.Data;
 import lombok.NoArgsConstructor;
 
-import java.sql.Time;
-import java.util.Date;
+
+import java.time.LocalDate;
+import java.time.LocalTime;
 
 
 @Data
@@ -36,8 +37,8 @@ public class Cours {
     @JoinColumn(name = "salle_id")
     private Salle salle;
 
-    private Date dateDeCours;
-    private Time debutDeCours;
-    private Time finDeCours;
+    private LocalDate dateDeCours;
+    private LocalTime debutDeCours;
+    private LocalTime finDeCours;
 
 }
