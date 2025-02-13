@@ -45,4 +45,16 @@ public class CoursController {
                 return ResponseEntity.status(INTERNAL_SERVER_ERROR).body(new ApiResponse("Erreur lors de la récupération des cours", INTERNAL_SERVER_ERROR));
             }
     }
+
+    @GetMapping("/coursByEnseignant")
+    public ResponseEntity<ApiResponse> getCoursByEnseignant (@PathVariable Long enseignant_id)
+    {
+        try {
+            List <Cours> cours = coursService.getCoursByEnseignant(enseignant_id);
+            return ResponseEntity.ok(new ApiResponse("success", cours));
+
+        } catch (Exception e) {
+            return ResponseEntity.status(INTERNAL_SERVER_ERROR).body(new ApiResponse("Erreur lors de la récupération des cours", INTERNAL_SERVER_ERROR));
+        }
+    }
 }
