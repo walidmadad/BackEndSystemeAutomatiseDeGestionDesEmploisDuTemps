@@ -9,13 +9,10 @@ import java.util.List;
 
 public interface ICoursService {
 
-    Cours addCours (CoursRequest coursRequest);
-    Cours updateCours (CoursRequest coursRequest, Long id);
-    void deleteCours (Long id);
+    Cours addCours(CoursRequest coursRequest);
+    Cours updateCours(CoursRequest coursRequest, Long id);
+    void deleteCours(Long id);
 
     List<Cours> getCoursByEnseignant(Long enseignant_id);
-    List<Cours> getCoursByMatiere(Long matiere_id);
-    List<Cours>  getCoursByMatiereAndType(Long matiere_id, String type);
-    List<Cours>  getCoursByEnseignantAndType (Long enseigant_id, String type);
     List<Cours> getAllCours();
 }
