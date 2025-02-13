@@ -2,6 +2,7 @@ package com.miashs.emploi_du_temps.service.cours;
 
 import com.miashs.emploi_du_temps.Exception.ResourceNotFoundException;
 import com.miashs.emploi_du_temps.model.Cours;
+import com.miashs.emploi_du_temps.model.Enseignant;
 import com.miashs.emploi_du_temps.model.Matiere;
 import com.miashs.emploi_du_temps.repository.CoursRepository;
 import com.miashs.emploi_du_temps.request.CoursRequest;
@@ -18,15 +19,18 @@ import java.util.Optional;
 public class CoursService implements ICoursService {
 
     private final CoursRepository coursRepository;
-    private final MatiereService matiereService;
     @Override
     public Cours addCours(CoursRequest coursRequest) {
         Cours cours = new Cours();
         cours.setEnseignant(coursRequest.getEnseignant());
+        cours.setSalle(coursRequest.getSalle());
         cours.setMatiere(coursRequest.getMatiere());
-        cours.setTypedecours(coursRequest.getTypeDeCours());
-        Matiere matiere = matiereService.getMatiereById(coursRequest.getMatiere().getId());
-        cours.setFormation(matiere.getFormation());
+        cours.setTypeDeCours(coursRequest.getTypeDeCours());
+        cours.setFormation(coursRequest.getFormation());
+        cours.setDateDeCours(coursRequest.getDateDeCours());
+        cours.setDebutDeCours(coursRequest.getDebutDeCours());
+        cours.setFinDeCours(coursRequest.getFinDeCours());
+
         return coursRepository.save(cours);
     }
 
@@ -35,11 +39,7 @@ public class CoursService implements ICoursService {
         Optional<Cours> coursExiste = coursRepository.findById(id);
         if(coursExiste.isPresent())
         {
-            Cours cours = coursExiste.get();
-            cours.setEnseignant(coursRequest.getEnseignant());
-            cours.setMatiere(coursRequest.getMatiere());
-            cours.setTypedecours(coursRequest.getTypeDeCours());
-            return coursRepository.save(cours);
+            return addCours(coursRequest);
         } else{
             throw new ResourceNotFoundException("Cours Not Found");
         }
@@ -61,23 +61,9 @@ public class CoursService implements ICoursService {
 
     @Override
     public List<Cours> getCoursByEnseignant(Long enseignant_id) {
-        return List.of();
+        return coursRepository.findByEnseignantId(enseignant_id);
     }
 
-    @Override
-    public List<Cours> getCoursByMatiere(Long matiere_id) {
-        return List.of();
-    }
-
-    @Override
-    public List<Cours> getCoursByMatiereAndType(Long matiere_id, String type) {
-        return List.of();
-    }
-
-    @Override
-    public List<Cours> getCoursByEnseignantAndType(Long enseigant_id, String type) {
-        return List.of();
-    }
     @Override
     public List<Cours> getAllCours()
     {

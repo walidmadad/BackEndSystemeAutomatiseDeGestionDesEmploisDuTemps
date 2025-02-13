@@ -15,6 +15,5 @@ public class UtilisateurRequest {
     private String email;
     private String motDePasse;
     private Departement departement;
-    private LocalDate dateEntree;
     private String userType;
 }

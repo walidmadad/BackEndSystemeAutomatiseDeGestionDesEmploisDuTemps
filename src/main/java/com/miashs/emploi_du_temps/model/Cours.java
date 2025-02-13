@@ -5,8 +5,9 @@ import lombok.AllArgsConstructor;
 import lombok.Data;
 import lombok.NoArgsConstructor;
 
-import java.sql.Time;
-import java.util.Date;
+
+import java.time.LocalDate;
+import java.time.LocalTime;
 
 
 @Data
@@ -18,11 +19,11 @@ public class Cours {
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     private long id;
 
-    private String typedecours;
+    private String typeDeCours;
 
-   @ManyToOne
-   @JoinColumn(name = "formation_id")
-   private Formation formation;
+    @ManyToOne
+    @JoinColumn(name = "formation_id")
+    private Formation formation;
 
     @ManyToOne
     @JoinColumn(name = "enseignant_id")
@@ -32,6 +33,12 @@ public class Cours {
     @JoinColumn(name = "matiere_id")
     private Matiere matiere;
 
+    @ManyToOne
+    @JoinColumn(name = "salle_id")
+    private Salle salle;
 
+    private LocalDate dateDeCours;
+    private LocalTime debutDeCours;
+    private LocalTime finDeCours;
 
 }
