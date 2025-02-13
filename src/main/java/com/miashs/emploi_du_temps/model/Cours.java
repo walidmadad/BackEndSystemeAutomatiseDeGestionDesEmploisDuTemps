@@ -32,6 +32,8 @@ public class Cours {
     @JoinColumn(name = "matiere_id")
     private Matiere matiere;
 
-
+    @ManyToOne
+    @JoinColumn(name = "salle_id")
+    private Salle salle;
 
 }
