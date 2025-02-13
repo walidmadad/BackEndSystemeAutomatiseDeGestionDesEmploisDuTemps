@@ -18,11 +18,11 @@ public class Cours {
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     private long id;
 
-    private String typedecours;
+    private String typeDeCours;
 
-   @ManyToOne
-   @JoinColumn(name = "formation_id")
-   private Formation formation;
+    @ManyToOne
+    @JoinColumn(name = "formation_id")
+    private Formation formation;
 
     @ManyToOne
     @JoinColumn(name = "enseignant_id")
@@ -35,5 +35,9 @@ public class Cours {
     @ManyToOne
     @JoinColumn(name = "salle_id")
     private Salle salle;
+
+    private Date dateDeCours;
+    private Time debutDeCours;
+    private Time finDeCours;
 
 }
