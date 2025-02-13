@@ -6,7 +6,6 @@ import com.miashs.emploi_du_temps.model.Enseignant;
 import com.miashs.emploi_du_temps.model.Utilisateur;
 import com.miashs.emploi_du_temps.request.AdminRequest;
 import com.miashs.emploi_du_temps.request.EnseignantRequest;
-import com.miashs.emploi_du_temps.request.UtilisateurRequest;
 import com.miashs.emploi_du_temps.response.ApiResponse;
 import com.miashs.emploi_du_temps.service.utilisateur.UtilisateurService;
 import lombok.RequiredArgsConstructor;
@@ -145,7 +144,7 @@ public class UtilisateurController {
         }
     }
     @GetMapping("enseignant/prenom/{prenom}")
-    public ResponseEntity<ApiResponse> getEnseignantByPrenom(@PathVariable String prenom) {
+    public ResponseEntity<ApiResponse> getEnseignantByPrenom(@PathVariable   String prenom) {
         try {
             List<Enseignant> enseignants = utilisateurService.getEnseignantByPrenom(prenom);
             return ResponseEntity.ok(new ApiResponse("Enseignants trouvés", enseignants));
