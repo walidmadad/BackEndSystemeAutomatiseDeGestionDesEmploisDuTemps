@@ -37,7 +37,8 @@ public class UtilisateurService implements IUtilisateurService{
         admin.setEmail(adminRequest.getEmail());
         admin.setMotDePasse(adminRequest.getMotDePasse());
         admin.setDepartement(adminRequest.getDepartement());
-
+        admin.setDateNaissance(adminRequest.getDateNaissance());
+        admin.setTelephone(adminRequest.getTelephone());
         adminRepository.save(admin);
         return true;
     }
@@ -104,6 +105,8 @@ public class UtilisateurService implements IUtilisateurService{
         enseignant.setEmail(enseignantRequest.getEmail());
         enseignant.setMotDePasse(enseignantRequest.getMotDePasse());
         enseignant.setDateEntree(enseignantRequest.getDateEntree());
+        enseignant.setDateNaissance(enseignantRequest.getDateNaissance());
+        enseignant.setTelephone(enseignantRequest.getTelephone());
         enseignantRepository.save(enseignant);
         return true;
 
@@ -121,6 +124,8 @@ public class UtilisateurService implements IUtilisateurService{
             enseignant.setEmail(enseignantRequest.getEmail());
             enseignant.setMotDePasse(enseignantRequest.getMotDePasse());
             enseignant.setDateEntree(enseignantRequest.getDateEntree());
+            enseignant.setTelephone(enseignantRequest.getTelephone());
+            enseignant.setDateNaissance(enseignantRequest.getDateNaissance());
             return enseignantRepository.save(enseignant);
         } else { throw new ResourceNotFoundException("Formation non trouvé avec ID : "+id);
         }
