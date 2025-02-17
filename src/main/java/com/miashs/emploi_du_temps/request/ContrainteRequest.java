@@ -4,6 +4,7 @@ package com.miashs.emploi_du_temps.request;
 import com.miashs.emploi_du_temps.model.Enseignant;
 import lombok.Data;
 
+import java.time.LocalDate;
 import java.time.LocalDateTime;
 
 @Data
@@ -13,8 +14,9 @@ public class ContrainteRequest {
     private String titre;
     private String typecontraite ;
     private String description;
-    private LocalDateTime dateDebut;
-    private LocalDateTime dateFin;
+    private LocalDate dateDeContrainte;
+    private LocalDateTime dateDebutContrainte;
+    private LocalDateTime dateFinContrainte;
 
     private Enseignant enseignant;
 }
