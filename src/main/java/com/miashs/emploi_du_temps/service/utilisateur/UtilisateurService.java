@@ -9,6 +9,7 @@ import com.miashs.emploi_du_temps.repository.EnseignantRepository;
 import com.miashs.emploi_du_temps.repository.UtilisateurRepository;
 import com.miashs.emploi_du_temps.request.AdminRequest;
 import com.miashs.emploi_du_temps.request.EnseignantRequest;
+import com.miashs.emploi_du_temps.service.EncryptionService;
 import lombok.RequiredArgsConstructor;
 import org.springframework.stereotype.Service;
 
@@ -21,7 +22,7 @@ public class UtilisateurService implements IUtilisateurService{
     private final EnseignantRepository enseignantRepository;
     private final AdminRepository adminRepository;
     private final UtilisateurRepository utilisateurRepository;
-
+    private final EncryptionService encryptionService;
 
     // ** ADMIN **
 
@@ -35,7 +36,8 @@ public class UtilisateurService implements IUtilisateurService{
         admin.setNom(adminRequest.getNom());
         admin.setPrenom(adminRequest.getPrenom());
         admin.setEmail(adminRequest.getEmail());
-        admin.setMotDePasse(adminRequest.getMotDePasse());
+        String passwordHashed = encryptionService.encryptPassword(adminRequest.getMotDePasse());
+        admin.setMotDePasse(passwordHashed);
         admin.setDepartement(adminRequest.getDepartement());
         admin.setDateNaissance(adminRequest.getDateNaissance());
         admin.setTelephone(adminRequest.getTelephone());
@@ -103,7 +105,8 @@ public class UtilisateurService implements IUtilisateurService{
         enseignant.setNom(enseignantRequest.getNom());
         enseignant.setPrenom(enseignantRequest.getPrenom());
         enseignant.setEmail(enseignantRequest.getEmail());
-        enseignant.setMotDePasse(enseignantRequest.getMotDePasse());
+        String passwordHashed = encryptionService.encryptPassword(enseignantRequest.getMotDePasse());
+        enseignant.setMotDePasse(passwordHashed);
         enseignant.setDateEntree(enseignantRequest.getDateEntree());
         enseignant.setDateNaissance(enseignantRequest.getDateNaissance());
         enseignant.setTelephone(enseignantRequest.getTelephone());
@@ -171,7 +174,7 @@ public class UtilisateurService implements IUtilisateurService{
     public Boolean verifyConnexionUtilisateur(String email, String motDePasse, String userType){
         Utilisateur utilisateur = utilisateurRepository.findByEmailAndUserType(email, userType);
         if (utilisateur != null) {
-            return motDePasse.equals(utilisateur.getMotDePasse());
+            return encryptionService.checkPassword(motDePasse, utilisateur.getMotDePasse());
         }
         return false;
     }
