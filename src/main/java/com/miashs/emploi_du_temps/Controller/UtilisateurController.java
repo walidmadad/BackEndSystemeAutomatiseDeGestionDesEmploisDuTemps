@@ -176,7 +176,7 @@ public class UtilisateurController {
 
     // ** UTILISATEUR **
     @GetMapping("/verify")
-    public ResponseEntity<ApiResponse> verifierConnexionEnseignants(@RequestParam String email, @RequestParam String motDePasse, @RequestParam String userType){
+    public ResponseEntity<ApiResponse> verifierConnexion(@RequestParam String email, @RequestParam String motDePasse, @RequestParam String userType){
         boolean isVerified = utilisateurService.verifyConnexionUtilisateur(email, motDePasse, userType);
         if (isVerified) {
             Utilisateur utilisateur = utilisateurService.getUtilisateurByEmail(email);
