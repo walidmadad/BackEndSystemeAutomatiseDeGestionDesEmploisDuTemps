@@ -6,6 +6,7 @@ import lombok.Data;
 import lombok.NoArgsConstructor;
 
 
+import java.time.LocalDate;
 import java.time.LocalDateTime;
 
 
@@ -20,8 +21,9 @@ public class Contrainte {
     private String titre;
     private String typecontraite ;
     private String description;
-    private LocalDateTime dateDebut;
-    private LocalDateTime dateFin;
+    private LocalDate dateDeContrainte;
+    private LocalDateTime dateDebutContrainte;
+    private LocalDateTime dateFinContrainte;
 
     @ManyToOne
     @JoinColumn(name = "enseignant_id")
