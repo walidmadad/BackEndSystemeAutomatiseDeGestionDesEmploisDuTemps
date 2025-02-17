@@ -46,7 +46,7 @@ public class CoursController {
             }
     }
 
-    @GetMapping("/coursByEnseignant")
+    @GetMapping("/coursByEnseignant/{enseignant_id}")
     public ResponseEntity<ApiResponse> getCoursByEnseignant (@PathVariable Long enseignant_id)
     {
         try {
