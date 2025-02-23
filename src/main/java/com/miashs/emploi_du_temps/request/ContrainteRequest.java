@@ -5,18 +5,18 @@ import com.miashs.emploi_du_temps.model.Enseignant;
 import lombok.Data;
 
 import java.time.LocalDate;
-import java.time.LocalDateTime;
+import java.time.LocalTime;
 
 @Data
 public class ContrainteRequest {
 
     private long id;
     private String titre;
-    private String typecontraite ;
+    private String typeContraite ;
     private String description;
     private LocalDate dateDeContrainte;
-    private LocalDateTime dateDebutContrainte;
-    private LocalDateTime dateFinContrainte;
+    private LocalTime dateDebutContrainte;
+    private LocalTime dateFinContrainte;
 
     private Enseignant enseignant;
 }
