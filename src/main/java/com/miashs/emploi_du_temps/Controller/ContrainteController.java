@@ -48,6 +48,7 @@ public class ContrainteController {
 
     }
 
+
     @GetMapping("/enseignant/{id}")
 
     public ResponseEntity<ApiResponse> getContrainteByEnseignantId ( @PathVariable Long id)

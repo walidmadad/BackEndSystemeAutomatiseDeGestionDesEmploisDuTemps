@@ -24,10 +24,11 @@ public class ContrainteService implements  IContrainteService{
 
         contrainte.setEnseignant(contrainteRequest.getEnseignant());
         contrainte.setTitre(contrainteRequest.getTitre());
-        contrainte.setTypecontraite(contrainteRequest.getTypecontraite());
+        contrainte.setTypeContraite(contrainteRequest.getTypeContraite());
         contrainte.setDescription(contrainteRequest.getDescription());
         contrainte.setDateDeContrainte(contrainteRequest.getDateDeContrainte());
         contrainte.setDateDebutContrainte(contrainteRequest.getDateDebutContrainte());
+        contrainte.setDateFinContrainte(contrainteRequest.getDateFinContrainte());
         contrainte.setDateFinContrainte(contrainte.getDateFinContrainte());
 
         return contrainteRepository.save(contrainte);
@@ -43,7 +44,7 @@ public class ContrainteService implements  IContrainteService{
             Contrainte contrainte = contrainteOptional.get();
             contrainte.setEnseignant(contrainteRequest.getEnseignant());
             contrainte.setTitre(contrainteRequest.getTitre());
-            contrainte.setTypecontraite(contrainteRequest.getTypecontraite());
+            contrainte.setTypeContraite(contrainteRequest.getTypeContraite());
             contrainte.setDescription(contrainteRequest.getDescription());
             contrainte.setDateDeContrainte(contrainteRequest.getDateDeContrainte());
             contrainte.setDateDebutContrainte(contrainteRequest.getDateDebutContrainte());
