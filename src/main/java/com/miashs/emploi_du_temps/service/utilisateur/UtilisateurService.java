@@ -35,7 +35,7 @@ public class UtilisateurService implements IUtilisateurService{
         Admin admin = new Admin();
         admin.setNom(adminRequest.getNom());
         admin.setPrenom(adminRequest.getPrenom());
-        admin.setEmail(adminRequest.getEmail());
+        admin.setEmail(adminRequest.getEmail().toLowerCase());
         String passwordHashed = encryptionService.encryptPassword(adminRequest.getMotDePasse());
         admin.setMotDePasse(passwordHashed);
         admin.setDepartement(adminRequest.getDepartement());
@@ -172,7 +172,7 @@ public class UtilisateurService implements IUtilisateurService{
 
     @Override
     public Boolean verifyConnexionUtilisateur(String email, String motDePasse, String userType){
-        Utilisateur utilisateur = utilisateurRepository.findByEmailAndUserType(email, userType);
+        Utilisateur utilisateur = utilisateurRepository.findByEmailAndUserType(email.toLowerCase(), userType);
         if (utilisateur != null) {
             return encryptionService.checkPassword(motDePasse, utilisateur.getMotDePasse());
         }

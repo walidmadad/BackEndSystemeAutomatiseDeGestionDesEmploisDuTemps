@@ -26,6 +26,7 @@ public class WebConfig implements WebMvcConfigurer {
         http.authorizeHttpRequests(
                 auth ->  auth.requestMatchers("/api/v1/**").permitAll()
                         .anyRequest().authenticated());
+        http.cors(AbstractHttpConfigurer::disable);
         http.sessionManagement(AbstractHttpConfigurer::disable);
         http.formLogin(AbstractHttpConfigurer::disable);
         http.httpBasic(basic -> basic.disable());
