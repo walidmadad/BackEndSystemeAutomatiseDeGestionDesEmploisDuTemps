@@ -12,7 +12,7 @@ public class ContrainteRequest {
 
     private long id;
     private String titre;
-    private String typeContraite ;
+    private String typeContrainte ;
     private String description;
     private LocalDate dateDeContrainte;
     private LocalTime dateDebutContrainte;
