@@ -18,11 +18,17 @@ public class Contrainte {
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     private long id;
+    @Column(name = "titre")
     private String titre;
-    private String typeContraite ;
+    @Column(name = "type_contrainte")
+    private String typeContrainte;
+    @Column(name = "description")
     private String description;
+    @Column(name = "date_de_contrainte")
     private LocalDate dateDeContrainte;
+    @Column(name = "date_debut_contrainte")
     private LocalTime dateDebutContrainte;
+    @Column(name = "date_fin_contrainte")
     private LocalTime dateFinContrainte;
 
     @ManyToOne
