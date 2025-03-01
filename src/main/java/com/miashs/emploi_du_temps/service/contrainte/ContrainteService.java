@@ -7,7 +7,6 @@ import com.miashs.emploi_du_temps.request.ContrainteRequest;
 import lombok.RequiredArgsConstructor;
 import org.springframework.stereotype.Service;
 
-import javax.swing.text.html.Option;
 import java.util.List;
 import java.util.Optional;
 
@@ -24,7 +23,7 @@ public class ContrainteService implements  IContrainteService{
 
         contrainte.setEnseignant(contrainteRequest.getEnseignant());
         contrainte.setTitre(contrainteRequest.getTitre());
-        contrainte.setTypeContraite(contrainteRequest.getTypeContraite());
+        contrainte.setTypeContrainte(contrainteRequest.getTypeContrainte());
         contrainte.setDescription(contrainteRequest.getDescription());
         contrainte.setDateDeContrainte(contrainteRequest.getDateDeContrainte());
         contrainte.setDateDebutContrainte(contrainteRequest.getDateDebutContrainte());
@@ -44,7 +43,7 @@ public class ContrainteService implements  IContrainteService{
             Contrainte contrainte = contrainteOptional.get();
             contrainte.setEnseignant(contrainteRequest.getEnseignant());
             contrainte.setTitre(contrainteRequest.getTitre());
-            contrainte.setTypeContraite(contrainteRequest.getTypeContraite());
+            contrainte.setTypeContrainte(contrainteRequest.getTypeContrainte());
             contrainte.setDescription(contrainteRequest.getDescription());
             contrainte.setDateDeContrainte(contrainteRequest.getDateDeContrainte());
             contrainte.setDateDebutContrainte(contrainteRequest.getDateDebutContrainte());
