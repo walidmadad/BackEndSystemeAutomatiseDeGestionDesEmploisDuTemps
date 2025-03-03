@@ -17,7 +17,7 @@ import java.time.LocalTime;
 public class Contrainte {
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
-    private long id;
+    private Long id;
     @Column(name = "titre")
     private String titre;
     @Column(name = "type_contrainte")
