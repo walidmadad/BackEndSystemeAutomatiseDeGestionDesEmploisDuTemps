@@ -10,7 +10,7 @@ import java.time.LocalTime;
 @Data
 public class ContrainteRequest {
 
-    private long id;
+    private Long id;
     private String titre;
     private String typeContrainte ;
     private String description;
