@@ -4,9 +4,13 @@ import com.miashs.emploi_du_temps.Exception.ResourceNotFoundException;
 import com.miashs.emploi_du_temps.model.Contrainte;
 import com.miashs.emploi_du_temps.repository.ContrainteRepository;
 import com.miashs.emploi_du_temps.request.ContrainteRequest;
+import com.miashs.emploi_du_temps.request.NotificationRequest;
+import com.miashs.emploi_du_temps.service.notification.NotificationService;
 import lombok.RequiredArgsConstructor;
 import org.springframework.stereotype.Service;
 
+import java.time.LocalDate;
+import java.time.LocalTime;
 import java.util.List;
 import java.util.Optional;
 
@@ -15,7 +19,7 @@ import java.util.Optional;
 public class ContrainteService implements  IContrainteService{
 
     private final ContrainteRepository contrainteRepository;
-
+    private final NotificationService notificationService;
 
     @Override
     public Contrainte addContrainte(ContrainteRequest contrainteRequest) {
@@ -30,7 +34,19 @@ public class ContrainteService implements  IContrainteService{
         contrainte.setDateFinContrainte(contrainteRequest.getDateFinContrainte());
         contrainte.setDateFinContrainte(contrainte.getDateFinContrainte());
 
-        return contrainteRepository.save(contrainte);
+        Contrainte contrainteSaved = contrainteRepository.save(contrainte);
+
+        NotificationRequest notificationRequest = new NotificationRequest();
+        notificationRequest.setSender(contrainteRequest.getEnseignant().getNom() + " " + contrainteRequest.getEnseignant().getPrenom());
+        notificationRequest.setTitre("Contrainte Ajouté");
+        notificationRequest.setMessage("Une nouvelle contrainte à été ajouté");
+        notificationRequest.setVue(false);
+        notificationRequest.setDateEnvoie(LocalDate.now());
+        notificationRequest.setTimeEnvoie(LocalTime.now());
+        notificationRequest.setEnseignant(contrainteRequest.getEnseignant());
+        notificationService.addNotification(notificationRequest);
+
+        return contrainteSaved;
     }
 
 
