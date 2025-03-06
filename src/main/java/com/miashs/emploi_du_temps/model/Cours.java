@@ -17,7 +17,7 @@ import java.time.LocalTime;
 public class Cours {
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
-    private long id;
+    private Long id;
 
     private String typeDeCours;
 
