@@ -9,8 +9,7 @@ import com.miashs.emploi_du_temps.service.notification.NotificationService;
 import lombok.RequiredArgsConstructor;
 import org.springframework.stereotype.Service;
 
-import java.time.LocalDate;
-import java.time.LocalTime;
+import java.time.LocalDateTime;
 import java.util.List;
 import java.util.Optional;
 
@@ -41,8 +40,7 @@ public class ContrainteService implements  IContrainteService{
         notificationRequest.setTitre("Contrainte Ajouté");
         notificationRequest.setMessage("Une nouvelle contrainte à été ajouté");
         notificationRequest.setVue(false);
-        notificationRequest.setDateEnvoie(LocalDate.now());
-        notificationRequest.setTimeEnvoie(LocalTime.now());
+        notificationRequest.setDateEnvoie(LocalDateTime.now());
         notificationRequest.setEnseignant(contrainteRequest.getEnseignant());
         notificationService.addNotification(notificationRequest);
 
