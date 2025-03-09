@@ -54,6 +54,7 @@ public class UtilisateurService implements IUtilisateurService{
             admin.setNom(adminRequest.getNom());
             admin.setPrenom(adminRequest.getPrenom());
             admin.setEmail(adminRequest.getEmail());
+            admin.setTelephone(adminRequest.getTelephone());
             admin.setMotDePasse(adminRequest.getMotDePasse());
             admin.setDepartement(adminRequest.getDepartement());
             return adminRepository.save(admin);
