@@ -15,7 +15,7 @@ import java.util.List;
 public class Matiere {
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
-    private long id;
+    private Long id;
     private String nom;
     private String code;
 

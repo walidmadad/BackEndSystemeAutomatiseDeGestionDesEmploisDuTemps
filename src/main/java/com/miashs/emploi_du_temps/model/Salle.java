@@ -15,9 +15,9 @@ import java.util.List;
 public class Salle {
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
-    private long id;
+    private Long id;
     private String nom;
-    private long capacite;
+    private Long capacite;
     private String typeSalle;
 
     @ManyToOne

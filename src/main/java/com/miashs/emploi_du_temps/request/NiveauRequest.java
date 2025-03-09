@@ -4,7 +4,7 @@ import lombok.Data;
 
 @Data
 public class NiveauRequest {
-    private long id;
+    private Long id;
     private String nom;
 
 }

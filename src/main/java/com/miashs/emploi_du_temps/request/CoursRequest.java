@@ -7,10 +7,9 @@ import com.miashs.emploi_du_temps.model.Matiere;
 import com.miashs.emploi_du_temps.model.Salle;
 import lombok.Data;
 
-import java.sql.Time;
 import java.time.LocalDate;
 import java.time.LocalTime;
-import java.util.Date;
+
 
 @Data
 public class CoursRequest {

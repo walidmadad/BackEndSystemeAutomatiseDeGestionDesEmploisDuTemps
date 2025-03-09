@@ -6,8 +6,8 @@ import lombok.Data;
 @Data
 public class SalleRequest {
     private String nom;
-    private long id;
-    private long capacite;
+    private Long id;
+    private Long capacite;
     private String typeSalle;
     private Departement departement;
 }

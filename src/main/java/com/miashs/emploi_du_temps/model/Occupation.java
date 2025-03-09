@@ -11,7 +11,7 @@ import java.util.Date;
 public class Occupation {
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
-    private long id;
+    private Long id;
     private Date jour;
     private Time heure_debut;
     private Time heure_fin;

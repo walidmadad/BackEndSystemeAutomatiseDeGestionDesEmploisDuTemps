@@ -1,21 +1,27 @@
 package com.miashs.emploi_du_temps.model;
 
 import jakarta.persistence.*;
+import lombok.AllArgsConstructor;
 import lombok.Data;
+import lombok.NoArgsConstructor;
 
-import java.util.Date;
+import java.time.LocalDateTime;
 
 @Data
 @Entity
+@NoArgsConstructor
+@AllArgsConstructor
 public class Notification {
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
-    private long id;
+    private Long id;
     private String titre;
     private String message;
-    private Date dateEnvoie;
+    private LocalDateTime dateEnvoie;
+    private Boolean vue;
+    private String sender;
 
-    @ManyToOne(cascade = CascadeType.ALL)
+    @ManyToOne
     @JoinColumn(name = "enseignant_id")
     private Enseignant enseignant;
 
