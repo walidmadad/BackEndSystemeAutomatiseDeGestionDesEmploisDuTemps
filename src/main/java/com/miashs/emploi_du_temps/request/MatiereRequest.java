@@ -5,7 +5,7 @@ import lombok.Data;
 
 @Data
 public class MatiereRequest {
-    private long id;
+    private Long id;
     private String nom;
     private String code;
 
