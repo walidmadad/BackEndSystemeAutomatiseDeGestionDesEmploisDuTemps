@@ -6,7 +6,7 @@ import lombok.Data;
 
 @Data
 public class FormationRequest {
-    private long id;
+    private Long id;
     private String nom;
 
     private Departement departement;
