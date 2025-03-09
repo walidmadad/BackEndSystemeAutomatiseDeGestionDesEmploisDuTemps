@@ -22,7 +22,7 @@ public class Contrainte {
     private String titre;
     @Column(name = "type_contrainte")
     private String typeContrainte;
-    @Column(name = "description")
+    @Column(name = "description", length = 1000)
     private String description;
     @Column(name = "date_de_contrainte")
     private LocalDate dateDeContrainte;
