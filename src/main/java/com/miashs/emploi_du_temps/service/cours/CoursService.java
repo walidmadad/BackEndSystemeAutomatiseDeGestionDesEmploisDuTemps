@@ -3,7 +3,6 @@ package com.miashs.emploi_du_temps.service.cours;
 import com.miashs.emploi_du_temps.Exception.ResourceNotFoundException;
 import com.miashs.emploi_du_temps.model.Cours;
 import com.miashs.emploi_du_temps.model.Enseignant;
-import com.miashs.emploi_du_temps.model.Utilisateur;
 import com.miashs.emploi_du_temps.repository.CoursRepository;
 import com.miashs.emploi_du_temps.request.CoursRequest;
 import com.miashs.emploi_du_temps.request.NotificationRequest;
