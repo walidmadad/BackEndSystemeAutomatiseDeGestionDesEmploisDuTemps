@@ -186,6 +186,8 @@ public class UtilisateurController {
                     .body(new ApiResponse("Identifiants invalides", false));
         }
     }
+
+    
     @GetMapping("/all")
     public ResponseEntity<ApiResponse> getAllUtilisateurs () {
         try {
