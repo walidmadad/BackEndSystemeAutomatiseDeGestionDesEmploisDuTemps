@@ -57,4 +57,14 @@ public class CoursController {
             return ResponseEntity.status(INTERNAL_SERVER_ERROR).body(new ApiResponse("Erreur lors de la récupération des cours", INTERNAL_SERVER_ERROR));
         }
     }
+
+    @DeleteMapping("/delete/{cours_id}")
+    public ResponseEntity<ApiResponse> deleteCours( @PathVariable Long cours_id){
+        try{
+            coursService.deleteCours(cours_id);
+            return ResponseEntity.ok().body(new ApiResponse("Cours Supprimé", true));
+        }catch (Exception e){
+            return ResponseEntity.status(INTERNAL_SERVER_ERROR).body(new ApiResponse("Erreur lors de la supression de cours", INTERNAL_SERVER_ERROR));
+        }
+    }
 }
